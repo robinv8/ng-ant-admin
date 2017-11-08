@@ -2,22 +2,12 @@
   <app-sider></app-sider>
   <div class="main">
     <app-header></app-header>
-    <div class="bread">
-      <nz-breadcrumb>
-        <nz-breadcrumb-item>
-          <i class="anticon anticon-home"></i>
-        </nz-breadcrumb-item>
-        <nz-breadcrumb-item>
-          <a href=""><i class="anticon anticon-user"></i><span>Application List</span></a>
-        </nz-breadcrumb-item>
-        <nz-breadcrumb-item>
-          <a href="">Application</a>
-        </nz-breadcrumb-item>
-      </nz-breadcrumb>
-    </div>
+    <app-bread></app-bread>
     <div class="container">
       <div class="content">
-        <div class="contentInner"></div>
+        <div class="contentInner">
+          <router-outlet></router-outlet>
+        </div>
       </div>
     </div>
   </div>
