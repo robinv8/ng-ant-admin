@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 
 import {HeaderComponent} from './header.component';
-import {SharedModule} from '../../core/shared.module';
+import {SharedModule} from '../../shared.module';
 
 @NgModule({
   declarations: [

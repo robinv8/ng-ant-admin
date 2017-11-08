@@ -21,6 +21,7 @@
     "@angular/platform-browser": "^4.2.4",
     "@angular/platform-browser-dynamic": "^4.2.4",
     "@angular/router": "^4.2.4",
+    "angular-web-storage": "^1.0.1",
     "antd": "^2.13.9",
     "core-js": "^2.4.1",
     "ng-zorro-antd": "^0.6.0-rc.3",

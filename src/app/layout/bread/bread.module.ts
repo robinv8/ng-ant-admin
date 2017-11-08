@@ -1,10 +1,10 @@
 import {NgModule} from '@angular/core';
-import {SharedModule} from '../../core/shared.module';
+import {SharedModule} from '../../shared.module';
 import {BreadComponent} from './bread.component';
 
 @NgModule({
   declarations: [BreadComponent],
-  imports: [SharedModule],
+  imports: [SharedModule.forRoot()],
   exports: [
     BreadComponent
   ]

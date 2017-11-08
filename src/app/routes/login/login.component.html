@@ -1,0 +1,34 @@
+<div class="form">
+  <div class="logo">
+    <img alt="logo" src="../../../assets/logo.png">
+    <span>AntD Admin</span>
+  </div>
+  <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="_submitForm()">
+    <div nz-form-item nz-row>
+      <div nz-form-control nz-col [nzValidateStatus]="validateForm.controls.userName"  [nzValidateStatus]="getFormControl('userName')" nzHasFeedback >
+        <nz-input formControlName="userName" [nzPlaceHolder]="'Username'" [nzSize]="'large'">
+          <ng-template #prefix>
+            <i class="anticon anticon-user"></i>
+          </ng-template>
+        </nz-input>
+        <div nz-form-explain *ngIf="validateForm.controls.userName.dirty&&validateForm.controls.userName.hasError('required')">Please input your username!</div>
+      </div>
+    </div>
+    <div nz-form-item nz-row>
+      <div nz-form-control nz-col [nzValidateStatus]="validateForm.controls.password" [nzValidateStatus]="getFormControl('Password')" nzHasFeedback >
+        <nz-input formControlName="password" [nzType]="'password'" [nzPlaceHolder]="'Password'" [nzSize]="'large'" >
+          <ng-template #prefix>
+            <i class="anticon anticon-lock"></i>
+          </ng-template>
+        </nz-input>
+        <div nz-form-explain *ngIf="validateForm.controls.password.dirty&&validateForm.controls.password.hasError('required')">Please input your Password!</div>
+      </div>
+    </div>
+    <div nz-form-item>
+      <div nz-form-control>
+        <button nz-button class="login-form-button" [nzType]="'primary'" [nzSize]="'large'">Log in</button>
+        <p><span>Username：guest</span><span>Password：guest</span></p>
+      </div>
+    </div>
+  </form>
+</div>

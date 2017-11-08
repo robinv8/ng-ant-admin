@@ -7,6 +7,8 @@ export interface Layout {
 @Injectable()
 export class SettingsService {
   private _layout: Layout = null;
+  private _auth: boolean;
+
   get layout(): Layout {
     if (!this._layout) {
       this._layout = Object.assign(<Layout>{
@@ -22,5 +24,16 @@ export class SettingsService {
       return true;
     }
     return false;
+  }
+
+  get auth(): boolean {
+    if (this._auth === undefined) {
+      this._auth = false;
+    }
+    return this._auth;
+  }
+
+  setAuth(value: boolean) {
+    this._auth = value;
   }
 }
