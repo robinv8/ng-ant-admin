@@ -1,29 +1,34 @@
 import {Injectable} from '@angular/core';
+import {CanActivate, CanLoad, ActivatedRouteSnapshot, RouterStateSnapshot, Route, Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import {LocalStorageService} from 'angular-web-storage';
 
 @Injectable()
-export class AuthService {
-  account: Account;
-
-  login(role: string): Observable<Account> {
-    const account = new Account();
-    account.id = 11;
-    account.name = 'super name';
-    account.roles = [role];
-    this.account = account;
-    return Observable.of(account);
+export class CanAuthProvide implements CanActivate, CanLoad {
+  constructor(private router: Router, private local: LocalStorageService) {
   }
 
-  getAccount(): Account {
-    return this.account;
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    return this.check();
   }
 
-  isLogdedin(): boolean {
-    return this.account && this.account.id != null;
+  canLoad(route: Route): boolean | Observable<boolean> | Promise<boolean> {
+    return this.check();
   }
 
-  hasRole(role: string) {
-    return this.account && this.account.roles.includes(role);
+  check(): Observable<boolean> {
+    return new Observable((observer) => {
+      const auth = this.local.get('username');
+      if (auth) {
+        observer.next(true);
+        observer.complete();
+        return;
+      }
+      console.log('登录失败');
+      observer.next(false);
+      observer.complete();
+      this.router.navigate(['/login']);
+    });
   }
 }

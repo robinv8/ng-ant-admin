@@ -7,7 +7,7 @@ export interface Layout {
 @Injectable()
 export class SettingsService {
   private _layout: Layout = null;
-  private _auth: boolean;
+  private _loaded: boolean;
 
   get layout(): Layout {
     if (!this._layout) {
@@ -26,14 +26,14 @@ export class SettingsService {
     return false;
   }
 
-  get auth(): boolean {
-    if (this._auth === undefined) {
-      this._auth = false;
+  get loadStatus(): boolean {
+    if (this._loaded === undefined) {
+      this._loaded = false;
     }
-    return this._auth;
+    return this._loaded;
   }
 
-  setAuth(value: boolean) {
-    this._auth = value;
+  setLoadStatus(value: boolean) {
+    this._loaded = value;
   }
 }

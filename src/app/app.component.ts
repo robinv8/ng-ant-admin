@@ -10,11 +10,9 @@ import {LocalStorageService} from 'angular-web-storage';
   providers: [AppService, LocalStorageService]
 })
 export class AppComponent {
-  load: boolean;
-
   constructor(public settings: SettingsService, private local: LocalStorageService) {
     window.onload = () => {
-      this.settings.setAuth(true);
+      this.settings.setLoadStatus(true);
     };
     console.log();
   }

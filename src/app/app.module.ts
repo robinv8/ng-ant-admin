@@ -9,6 +9,9 @@ import {LayoutModule} from './layout/layout.module';
 import {LoaderModule} from './components/loader/loader.module';
 import {LoginModule} from './routes/login/login.module';
 import {HomeModule} from './routes/home/home.module';
+import {CanAuthProvide} from './core/services/auth.service';
+
+import {LocalStorageService} from 'angular-web-storage';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,7 @@ import {HomeModule} from './routes/home/home.module';
     HomeModule,
     LayoutModule
   ],
-  providers: [SettingsService],
+  providers: [SettingsService, CanAuthProvide, LocalStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

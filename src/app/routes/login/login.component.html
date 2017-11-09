@@ -26,7 +26,7 @@
     </div>
     <div nz-form-item>
       <div nz-form-control>
-        <button nz-button class="login-form-button" [nzType]="'primary'" [nzSize]="'large'">Log in</button>
+        <button nz-button [nzLoading]="loadStatus" class="login-form-button" [nzType]="'primary'" [nzSize]="'large'">{{loginBtn}}</button>
         <p><span>Username：guest</span><span>Password：guest</span></p>
       </div>
     </div>
