@@ -9,6 +9,7 @@ import {LayoutModule} from './layout/layout.module';
 import {LoaderModule} from './components/loader/loader.module';
 import {LoginModule} from './routes/login/login.module';
 import {HomeModule} from './routes/home/home.module';
+import {DashboardModule} from './routes/dashboard/dashboard.module';
 import {CanAuthProvide} from './core/services/auth.service';
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import {CanAuthProvide} from './core/services/auth.service';
     LoaderModule,
     LoginModule,
     HomeModule,
+    DashboardModule,
     LayoutModule
   ],
   providers: [SettingsService, CanAuthProvide],
