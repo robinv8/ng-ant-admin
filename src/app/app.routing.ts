@@ -7,10 +7,14 @@ import {DashboardComponent} from './routes/dashboard/dashboard.component';
 import {CanAuthProvide} from './core/services/auth.service';
 
 const routes: Routes = [
-  {path: 'home', component: HomeComponent, canActivate: [CanAuthProvide]},
+  {
+    path: '', component: HomeComponent, canActivate: [CanAuthProvide],
+    children: [
+      {path: 'dashboard', component: DashboardComponent, canActivate: [CanAuthProvide]}
+    ]
+  },
   {path: 'login', component: LoginComponent, canLoad: [CanAuthProvide]},
-  {path: 'dashboard', component: DashboardComponent, canLoad: [CanAuthProvide]},
-  {path: '**', redirectTo: '/home', pathMatch: 'full'},
+  {path: '**', redirectTo: '/', pathMatch: 'full'},
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes);
