@@ -2,11 +2,11 @@ import {Injectable} from '@angular/core';
 import {CanActivate, CanLoad, ActivatedRouteSnapshot, RouterStateSnapshot, Route, Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
-import {LocalStorageService} from 'angular-web-storage';
+import {SessionStorageService} from 'angular-web-storage';
 
 @Injectable()
 export class CanAuthProvide implements CanActivate, CanLoad {
-  constructor(private router: Router, private local: LocalStorageService) {
+  constructor(private router: Router, private _session: SessionStorageService) {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
@@ -19,7 +19,7 @@ export class CanAuthProvide implements CanActivate, CanLoad {
 
   check(): Observable<boolean> {
     return new Observable((observer) => {
-      const auth = this.local.get('username');
+      const auth = this._session.get('username');
       if (auth) {
         observer.next(true);
         observer.complete();

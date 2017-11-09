@@ -4,6 +4,7 @@ import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {NgZorroAntdModule} from 'ng-zorro-antd';
+import { AngularWebStorageModule } from 'angular-web-storage';
 
 @NgModule({
   imports: [
@@ -12,13 +13,14 @@ import {NgZorroAntdModule} from 'ng-zorro-antd';
     ReactiveFormsModule,
     HttpClientModule,
     NgZorroAntdModule.forRoot(),
+    AngularWebStorageModule
   ],
   exports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     NgZorroAntdModule,
-    RouterModule,
+    RouterModule
   ]
 })
 export class SharedModule {

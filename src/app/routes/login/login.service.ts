@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {LocalStorageService} from 'angular-web-storage';
+import {SessionStorageService} from 'angular-web-storage';
 
 @Injectable()
 export class LoginService {
-  constructor(private local: LocalStorageService) {
+  constructor(private _session: SessionStorageService) {
 
   }
 
@@ -11,7 +11,7 @@ export class LoginService {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         if ((username === 'admin' && password === 'admin') || (username === 'guest' && password === 'guest')) {
-          this.local.set('username', username);
+          this._session.set('username', username);
           resolve(true);
         } else {
           reject(false);
