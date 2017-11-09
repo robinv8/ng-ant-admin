@@ -1,17 +1,16 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {SettingsService} from '../../core/services/settings.service';
-import {LocalStorageService} from 'angular-web-storage';
+import {SessionStorageService} from 'angular-web-storage';
 
 @Component({
   selector: 'app-header',
   templateUrl: 'header.component.html',
   styleUrls: ['./header.component.less'],
-  providers: [LocalStorageService]
 })
 
 export class HeaderComponent {
-  constructor(public settings: SettingsService, private local: LocalStorageService, private router: Router) {
+  constructor(public settings: SettingsService, private _session: SessionStorageService, private router: Router) {
 
   }
 
@@ -20,7 +19,7 @@ export class HeaderComponent {
   }
 
   signOut() {
-    this.local.clear();
+    this._session.clear();
     this.router.navigate(['login']);
   }
 }
