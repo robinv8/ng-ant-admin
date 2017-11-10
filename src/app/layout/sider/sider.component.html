@@ -11,7 +11,7 @@
         <span title><i class="anticon anticon-{{item.icon}}"></i> <span class="nav-text">{{item.name}}</span></span>
         <ul>
           <li nz-menu-item routerLink="{{subItem.route}}" *ngFor="let subItem of item.submenu">
-            {{subItem.name}}
+            <span title><i class="anticon anticon-{{subItem.icon}}"></i> <span class="nav-text"> {{subItem.name}}</span></span>
           </li>
         </ul>
       </li>

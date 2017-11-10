@@ -1,17 +1,16 @@
 import {Injectable} from '@angular/core';
-import {SessionStorageService} from 'angular-web-storage';
+import {CookieService} from 'ngx-cookie';
 
 @Injectable()
 export class LoginService {
-  constructor(private _session: SessionStorageService) {
-
+  constructor(private _cookie: CookieService) {
   }
 
   login(username: string, password: string) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         if ((username === 'admin' && password === 'admin') || (username === 'guest' && password === 'guest')) {
-          this._session.set('username', username);
+          this._cookie.put('username', username);
           resolve(true);
         } else {
           reject(false);

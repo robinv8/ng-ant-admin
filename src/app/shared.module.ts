@@ -4,7 +4,8 @@ import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {NgZorroAntdModule} from 'ng-zorro-antd';
-import { AngularWebStorageModule } from 'angular-web-storage';
+import {CookieModule} from 'ngx-cookie';
+import {ChartsModule} from 'ng2-charts/ng2-charts';
 
 @NgModule({
   imports: [
@@ -13,14 +14,15 @@ import { AngularWebStorageModule } from 'angular-web-storage';
     ReactiveFormsModule,
     HttpClientModule,
     NgZorroAntdModule.forRoot(),
-    AngularWebStorageModule
+    CookieModule.forRoot(),
   ],
   exports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     NgZorroAntdModule,
-    RouterModule
+    RouterModule,
+    ChartsModule
   ]
 })
 export class SharedModule {

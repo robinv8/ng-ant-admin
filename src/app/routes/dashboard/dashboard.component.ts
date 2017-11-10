@@ -13,71 +13,52 @@ export class DashboardComponent implements OnInit {
   iconColor3 = {color: 'rgb(216, 151, 235)'};
   iconColor4 = {color: 'rgb(246, 152, 153)'};
 
-  constructor(private _elem: ElementRef) {  }
-
-  ngOnInit() {
-    // this.antChart = {
-    //   title: {
-    //     text: '折线图堆叠'
-    //   },
-    //   tooltip: {
-    //     trigger: 'axis'
-    //   },
-    //   legend: {
-    //     data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']
-    //   },
-    //   grid: {
-    //     left: '3%',
-    //     right: '4%',
-    //     bottom: '3%',
-    //     containLabel: true
-    //   },
-    //   toolbox: {
-    //     feature: {
-    //       saveAsImage: {}
-    //     }
-    //   },
-    //   xAxis: {
-    //     type: 'category',
-    //     boundaryGap: false,
-    //     data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
-    //   },
-    //   yAxis: {
-    //     type: 'value'
-    //   },
-    //   series: [
-    //     {
-    //       name: '邮件营销',
-    //       type: 'line',
-    //       stack: '总量',
-    //       data: [120, 132, 101, 134, 90, 230, 210]
-    //     },
-    //     {
-    //       name: '联盟广告',
-    //       type: 'line',
-    //       stack: '总量',
-    //       data: [220, 182, 191, 234, 290, 330, 310]
-    //     },
-    //     {
-    //       name: '视频广告',
-    //       type: 'line',
-    //       stack: '总量',
-    //       data: [150, 232, 201, 154, 190, 330, 410]
-    //     },
-    //     {
-    //       name: '直接访问',
-    //       type: 'line',
-    //       stack: '总量',
-    //       data: [320, 332, 301, 334, 390, 330, 320]
-    //     },
-    //     {
-    //       name: '搜索引擎',
-    //       type: 'line',
-    //       stack: '总量',
-    //       data: [820, 932, 901, 934, 1290, 1330, 1320]
-    //     }
-    //   ]
-    // };
+  constructor(private _elem: ElementRef) {
   }
 
+  public barChartOptions: any = {
+    scaleShowVerticalLines: false,
+    responsive: true
+  };
+  public barChartLabels: string[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+  public barChartType = 'bar';
+  public barChartLegend = true;
+
+  public barChartData: any[] = [
+    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
+    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
+  ];
+
+  // events
+  public chartClicked(e: any): void {
+    console.log(e);
+  }
+
+  public chartHovered(e: any): void {
+    console.log(e);
+  }
+
+  public randomize(): void {
+    // Only Change 3 values
+    const data = [
+      Math.round(Math.random() * 100),
+      59,
+      80,
+      (Math.random() * 100),
+      56,
+      (Math.random() * 100),
+      40];
+    const clone = JSON.parse(JSON.stringify(this.barChartData));
+    clone[0].data = data;
+    this.barChartData = clone;
+    /**
+     * (My guess), for Angular to recognize the change in the dataset
+     * it has to change the dataset variable directly,
+     * so one way around it, is to clone the data, change it and then
+     * assign it;
+     */
+  }
+
+  ngOnInit() {
+  }
 }

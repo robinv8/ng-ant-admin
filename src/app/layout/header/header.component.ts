@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {SettingsService} from '../../core/services/settings.service';
-import {SessionStorageService} from 'angular-web-storage';
+import {CookieService} from 'ngx-cookie';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +10,7 @@ import {SessionStorageService} from 'angular-web-storage';
 })
 
 export class HeaderComponent {
-  constructor(public settings: SettingsService, private _session: SessionStorageService, private router: Router) {
+  constructor(public settings: SettingsService, private router: Router, private _cookie: CookieService) {
 
   }
 
@@ -19,7 +19,7 @@ export class HeaderComponent {
   }
 
   signOut() {
-    this._session.clear();
+    this._cookie.removeAll();
     this.router.navigate(['login']);
   }
 }
