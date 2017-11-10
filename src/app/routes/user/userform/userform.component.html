@@ -1,0 +1,68 @@
+<!--<app-form [widgets]="widgets" (onCancel)="_handleCancel($event)" (onConfirm)="_submitForm($event)"></app-form>-->
+<div class="form-wrap">
+  <form nz-form [formGroup]="validateForm" [nzType]="'horizontal'">
+    <div nz-form-item nz-row>
+      <div nz-form-label nz-col [nzSm]="6">
+        <label for="username" nz-form-item-required>用户名</label>
+      </div>
+      <div nz-form-control nz-col [nzSm]="14" [nzValidateStatus]="getFormControl('adminName')">
+        <nz-input [nzSize]="'large'" formControlName="adminName" [nzId]="'adminName'"
+                  [ngModel]="formData.adminName"></nz-input>
+        <div nz-form-explain
+             *ngIf="getFormControl('adminName').dirty&&getFormControl('adminName').hasError('adminName')">
+          The
+          input is not valid E-mail!
+        </div>
+      </div>
+    </div>
+    <div nz-form-item nz-row>
+      <div nz-form-label nz-col [nzSm]="6">
+        <label for="password" nz-form-item-required>密码</label>
+      </div>
+      <div nz-form-control nz-col [nzSm]="14"
+           [nzValidateStatus]="getFormControl('adminPassword')">
+        <nz-input [nzSize]="'large'" formControlName="adminPassword" [nzId]="'adminPassword'"
+                  [ngModel]="formData.adminPassword"></nz-input>
+        <div nz-form-explain
+             *ngIf="getFormControl('adminPassword').dirty&&getFormControl('adminPassword').hasError('required')">Please
+          input
+          your adminPassword!
+        </div>
+      </div>
+    </div>
+    <div nz-form-item nz-row>
+      <div nz-form-label nz-col [nzSm]="6">
+        <label for="roleId" nz-form-item-required>角色名称</label>
+      </div>
+      <div nz-form-control nz-col [nzSm]="14"
+           [nzValidateStatus]="getFormControl('roleId')">
+        <nz-select
+          nzAllowClear
+          [nzPlaceHolder]="'选择角色'"
+          [(ngModel)]="formData.roleId"
+          formControlName="roleId"
+          [nzShowSearch]="true">
+          <nz-option
+            *ngFor="let option of roleData"
+            [nzLabel]="option.roleName"
+            [nzValue]="option.roleId"
+            [nzDisabled]="option.disabled">
+          </nz-option>
+        </nz-select>
+        <div nz-form-explain
+             *ngIf="getFormControl('roleId').dirty&&getFormControl('roleId').hasError('required')">角色名称必选!
+        </div>
+      </div>
+    </div>
+    <div nz-form-item nz-row style="margin-bottom:8px;">
+      <div class="customize-footer">
+        <button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="_submitForm()">
+          确定
+        </button>
+        <button nz-button [nzType]="'default'" [nzSize]="'large'" (click)="_handleCancel($event)">
+          返 回
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

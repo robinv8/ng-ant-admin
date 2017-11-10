@@ -30,7 +30,7 @@ import {CanAuthProvide} from './core/services/auth.service';
     UserModule
   ],
   providers: [SettingsService, CanAuthProvide],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }
