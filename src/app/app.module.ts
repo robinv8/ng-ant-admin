@@ -10,6 +10,7 @@ import {LoaderModule} from './components/loader/loader.module';
 import {LoginModule} from './routes/login/login.module';
 import {HomeModule} from './routes/home/home.module';
 import {DashboardModule} from './routes/dashboard/dashboard.module';
+import {UserModule} from './routes/user/user.module';
 import {CanAuthProvide} from './core/services/auth.service';
 
 @NgModule({
@@ -25,7 +26,8 @@ import {CanAuthProvide} from './core/services/auth.service';
     LoginModule,
     HomeModule,
     DashboardModule,
-    LayoutModule
+    LayoutModule,
+    UserModule
   ],
   providers: [SettingsService, CanAuthProvide],
   bootstrap: [AppComponent]

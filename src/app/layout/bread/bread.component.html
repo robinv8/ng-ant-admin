@@ -1,13 +1,10 @@
 <div class="bread">
   <nz-breadcrumb>
     <nz-breadcrumb-item>
-      <i class="anticon anticon-home"></i>
+      <a href="/dashboard"><i class="anticon anticon-home"></i><span>Dashboard</span></a>
     </nz-breadcrumb-item>
-    <nz-breadcrumb-item>
-      <a href=""><i class="anticon anticon-user"></i><span>Application List</span></a>
-    </nz-breadcrumb-item>
-    <nz-breadcrumb-item>
-      <a href="">Application</a>
+    <nz-breadcrumb-item *ngFor="let breadcrumb of breadcrumbs">
+      <a routerLink="{{breadcrumb.url}}" routerLinkActive="active"><i class="anticon anticon-{{breadcrumb.icon}}"></i><span>{{ breadcrumb.label }}</span></a>
     </nz-breadcrumb-item>
   </nz-breadcrumb>
 </div>
