@@ -24,6 +24,7 @@
     "angular-web-storage": "^1.0.0",
     "antd": "^2.13.9",
     "core-js": "^2.4.1",
+    "echarts": "^3.6.2",
     "ng-zorro-antd": "^0.6.0-rc.3",
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.14"
