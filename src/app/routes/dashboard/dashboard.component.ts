@@ -7,7 +7,7 @@ import {Component, ElementRef, OnInit} from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
   antChart: any;
-  paddingStyle = {'padding-left': '12px', 'padding-right': '12px', width: '25%', float: 'left'};
+  paddingStyle = {'padding-left': '12px', 'padding-right': '12px', width: '25%', float: 'left', '-webkit-box-flex': 0};
   iconColor1 = {color: 'rgb(100, 234, 145)'};
   iconColor2 = {color: 'rgb(143, 201, 251)'};
   iconColor3 = {color: 'rgb(216, 151, 235)'};

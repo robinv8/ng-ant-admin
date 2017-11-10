@@ -12,6 +12,7 @@ import {HomeModule} from './routes/home/home.module';
 import {DashboardModule} from './routes/dashboard/dashboard.module';
 import {UserModule} from './routes/user/user.module';
 import {CanAuthProvide} from './core/services/auth.service';
+import {UserModule} from './routes/user/user.model';
 
 @NgModule({
   declarations: [

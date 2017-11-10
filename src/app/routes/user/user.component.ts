@@ -1,146 +1,192 @@
 import {Component, OnInit} from '@angular/core';
-import {NzMessageService, NzModalService} from 'ng-zorro-antd';
-import {UserService} from './user.service';
-import {UserformComponent} from './userform/userform.component';
+import * as moment from 'moment';
+const init_options = [{
+  value: 'zhejiang',
+  label: 'Zhejiang',
+  children: [{
+    value: 'hangzhou',
+    label: 'Hangzhou',
+    children: [{
+      value: 'xihu',
+      label: 'West Lake',
+      isLeaf: true
+    }],
+  }, {
+    value: 'ningbo',
+    label: 'Ningbo',
+    isLeaf: true
+  }],
+}, {
+  value: 'jiangsu',
+  label: 'Jiangsu',
+  children: [{
+    value: 'nanjing',
+    label: 'Nanjing',
+    children: [{
+      value: 'zhonghuamen',
+      label: 'Zhong Hua Men',
+      isLeaf: true
+    }],
+  }],
+}];
+
+const other_options = [{
+  value: 'fujian',
+  label: 'Fujian',
+  children: [{
+    value: 'xiamen',
+    label: 'Xiamen',
+    children: [{
+      value: 'Kulangsu',
+      label: 'Kulangsu',
+      isLeaf: true
+    }],
+  }],
+}, {
+  value: 'guangxi',
+  label: 'Guangxi',
+  children: [{
+    value: 'guilin',
+    label: 'Guilin',
+    children: [{
+      value: 'Lijiang',
+      label: 'Li Jiang River',
+      isLeaf: true
+    }],
+  }],
+}];
 
 @Component({
   selector: 'app-user',
   templateUrl: 'user.component.html',
-  styleUrls: ['./user.component.less'],
-  providers: [UserService]
+  styleUrls: ['./user.component.less']
 })
 
 export class UserComponent implements OnInit {
-  current = 1;
-  pageSize = 10;
-  total = 1;
-  dataSet = [];
-  loading = true;
-  roleData: any;
-  gridView = {
-    tableFields: [
-      {
-        field: 'id',
-        text: 'Id'
-      },
-      {
-        field: 'avatar',
-        text: 'Avatar'
-      },
-      {
-        field: 'name',
-        text: 'Name'
-      },
-      {
-        field: 'nickName',
-        text: 'NickName'
-      },
-      {
-        field: 'phone',
-        text: 'Phone',
-      },
-      {
-        field: 'age',
-        text: 'Age',
-      },
-      {
-        field: 'address',
-        text: 'Address',
-      },
-      {
-        field: 'isMale',
-        text: 'IsMale',
-      },
-      {
-        field: 'email',
-        text: 'Email',
-      },
-      {
-        field: 'createTime',
-        text: 'CreateTime',
-      },
-      {
-        type: 2,
-        text: '操作',
-        handles: [
-          {
-            text: '修改',
-            key: 'adminId',
-            event: (id) => {
-              this.create(id);
-            }
-          },
-          {
-            text: '删除',
-            key: 'adminId',
-            confirm: {
-              title: '确定要删除这个任务吗？',
-              event: {
-                ok: (id) => {
-                  this._delete(id);
-                },
-                cancel: () => {
-                  this.message.info('click cancel');
-                }
-              }
-            }
-          }
-        ]
-      }
-    ]
-  };
+  _options = null;
+  _value2: string;
+  _value: any[] = null;
+  _startDate = null;
+  _endDate = null;
+  switchValue = true;
+  _margin= {'margin-left': '12px'};
+  _allChecked = false;
+  _indeterminate = false;
+  _displayData = [];
+  data = [ {
+    key    : '1',
+    name   : 'John Brown',
+    age    : 32,
+    address: 'New York No. 1 Lake Park',
+  }, {
+    key    : '2',
+    name   : 'Jim Green',
+    age    : 42,
+    address: 'London No. 1 Lake Park',
+  }, {
+    key    : '3',
+    name   : 'Joe Black',
+    age    : 32,
+    address: 'Sidney No. 1 Lake Park',
+  } ];
 
-  constructor(private userService: UserService, private message: NzMessageService, private modalService: NzModalService) {
+  _console(value) {
+    console.log(value);
+  }
+  constructor() {
+  }
+  ngOnInit() {
+    // let's set nzOptions in a asynchronous  way
+    setTimeout(() => {
+      this._options = init_options;
+    }, 100);
   }
 
-  refreshData = (event?: number) => {
-    this.loading = true;
-    this.userService.getUserList(event || this.current, this.pageSize)
-      .then((result: any) => {
-        this.dataSet = result.data;
-        this.total = result.total;
-        this.loading = false;
-      }, (err) => {
+  _changeNzOptions(): void {
+    if (this._options === init_options) {
+      this._options = other_options;
+    } else {
+      this._options = init_options;
+    }
+  }
 
+  newArray = (len) => {
+    const result = [];
+    for (let i = 0; i < len; i++) {
+      result.push(i);
+    }
+    return result;
+  }
+  _startValueChange = () => {
+    if (this._startDate > this._endDate) {
+      this._endDate = null;
+    }
+  }
+  _endValueChange = () => {
+    if (this._startDate > this._endDate) {
+      this._startDate = null;
+    }
+  }
+  _disabledStartDate = (startValue) => {
+    if (!startValue || !this._endDate) {
+      return false;
+    }
+    return startValue.getTime() >= this._endDate.getTime();
+  }
+  _disabledEndDate = (endValue) => {
+    if (!endValue || !this._startDate) {
+      return false;
+    }
+    return endValue.getTime() <= this._startDate.getTime();
+  }
+  get _isSameDay() {
+    return this._startDate && this._endDate && moment(this._startDate).isSame(this._endDate, 'day')
+  }
+  get _endTime() {
+    return {
+      nzHideDisabledOptions: true,
+      nzDisabledHours: () => {
+        return this._isSameDay ? this.newArray(this._startDate.getHours()) : [];
+      },
+      nzDisabledMinutes: (h) => {
+        if (this._isSameDay && h === this._startDate.getHours()) {
+          return this.newArray(this._startDate.getMinutes());
+        }
+        return [];
+      },
+      nzDisabledSeconds: (h, m) => {
+        if (this._isSameDay && h === this._startDate.getHours() && m === this._startDate.getMinutes()) {
+          return this.newArray(this._startDate.getSeconds());
+        }
+        return [];
+      }
+    }
+  }
+
+//  表格
+  _displayDataChange($event) {
+    this._displayData = $event;
+    this._refreshStatus();
+  }
+
+  _refreshStatus() {
+    const allChecked = this._displayData.every(value => value.checked === true);
+    const allUnChecked = this._displayData.every(value => !value.checked);
+    this._allChecked = allChecked;
+    this._indeterminate = (!allChecked) && (!allUnChecked);
+  }
+
+  _checkAll(value) {
+    if (value) {
+      this._displayData.forEach(data => {
+        data.checked = true;
       });
-  }
-
-  async ngOnInit() {
-    /*await this.roleService.queryAll()
-      .then((result: any) => {
-        this.roleData = result.data;
-      })
-    console.log(this.roleData);*/
-    this.refreshData();
-  }
-
-  create(id) {
-    const subscription = this.modalService.open({
-      title: id ? '修改管理员信息' : '创建管理员信息',
-      content: UserformComponent,
-      onOk() {
-      },
-      onCancel() {
-        console.log('Click cancel');
-      },
-      footer: false,
-      componentParams: {
-        id: id
-      }
-    });
-    subscription.subscribe(result => {
-      if (result === 'ok') {
-        this.refreshData();
-      }
-    });
-  }
-
-  _delete(id) {
-    this.userService.remove(id)
-      .then((result: any) => {
-        this.refreshData();
-        this.message.info(result.msg);
-      }, (err) => {
+    } else {
+      this._displayData.forEach(data => {
+        data.checked = false;
       });
+    }
+    this._refreshStatus();
   }
+
 }
