@@ -1,20 +1,19 @@
 <div class="ant-row">
   <div class="user">
     <div class="ant-sel">
-      <nz-input [nzType]="'search'" [nzPlaceHolder]="'Search Name'" [(ngModel)]="_value2" [nzPlaceHolder]="'default size'" class="ant-input">
-      </nz-input>
+      <!--<nz-input [nzType]="'search'" [nzPlaceHolder]="'Search Name'" [(ngModel)]="_value2" [nzPlaceHolder]="'default size'" class="ant-input">-->
+      <!--</nz-input>-->
+      <nz-input [nzType]="'search'" [nzPlaceHolder]="'input search text'" [(ngModel)]="_value" class="ant_search"></nz-input>
     </div>
     <div class="ant-sel">
-      <nz-cascader [class.class123]="true" [nzOptions]="_options" [(ngModel)]="_value" (ngModelChange)="_console($event)" (nzChange)="_console($event)" >
+      <nz-cascader [class.class123]="true" [nzOptions]="_options" [(ngModel)]="_value2" (ngModelChange)="_console($event)" (nzChange)="_console($event)" >
       </nz-cascader>
     </div>
-    <div class="ant-sel">
+    <div class="ant-sel" style="width: 33%;">
       <div class="ant_time_title">Createtime</div>
       <nz-datepicker style="width: 40%;" (ngModelChange)="_startDate=$event;_startValueChange()" [ngModel]="_startDate" [nzDisabledDate]="_disabledStartDate" [nzShowTime]="true" [nzFormat]="'YYYY-MM-DD HH:mm:ss'" [nzPlaceHolder]="'Start date'"></nz-datepicker>
       <nz-datepicker style="width: 40%;" (ngModelChange)="_endDate=$event;_endValueChange()" [ngModel]="_endDate" [nzDisabledDate]="_disabledEndDate" [nzShowTime]="_endTime" [nzFormat]="'YYYY-MM-DD HH:mm:ss'" [nzPlaceHolder]="'End date'"></nz-datepicker>
     </div>
-  </div>
-  <div class="user">
     <button nz-button [nzType]="'primary'" [ngStyle]="_margin">
       <span>Search</span>
     </button>
@@ -22,35 +21,17 @@
       <span>Reset</span>
     </button>
     <div class="head_rt">
-      <nz-switch [(ngModel)]="switchValue">Motion</nz-switch>
+      <nz-switch [(ngModel)]="switchValue"></nz-switch>
+      <button nz-button [nzType]="'default'" [ngStyle]="_margin" ngStyle="_create">
+        <span>Create</span>
+      </button>
     </div>
   </div>
-  <div class="user">
-    <nz-table #nzTable [nzDataSource]="data" [nzPageSize]="10" (nzDataChange)="_displayDataChange($event)" (nzPageIndexChange)="_refreshStatus()" (nzPageSizeChange)="_refreshStatus()">
-      <thead nz-thead>
-      <tr>
-        <th nz-th [nzCheckbox]="true">
-          <label nz-checkbox [(ngModel)]="_allChecked" [nzIndeterminate]="_indeterminate" (ngModelChange)="_checkAll($event)">
-          </label>
-        </th>
-        <th nz-th><span>Name</span></th>
-        <th nz-th><span>Age</span></th>
-        <th nz-th><span>Address</span></th>
-      </tr>
-      </thead>
-      <tbody nz-tbody>
-      <tr nz-tbody-tr *ngFor="let data of nzTable.data">
-        <td nz-td [nzCheckbox]="true">
-          <label nz-checkbox [(ngModel)]="data.checked" (ngModelChange)="_refreshStatus($event)">
-          </label>
-        </td>
-        <td nz-td>
-          <a>{{data.name}}</a>
-        </td>
-        <td nz-td>{{data.age}}</td>
-        <td nz-td>{{data.address}}</td>
-      </tr>
-      </tbody>
-    </nz-table>
-  </div>
 </div>
+
+<app-table [gridView]="gridView" [tableData]="dataSet"
+           [total]="total"
+           [(pageIndex)]="current"
+           [pageSize]="pageSize"
+           [loading]="loading"
+           (refreshData)="refreshData($event)"></app-table>
