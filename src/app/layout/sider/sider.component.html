@@ -25,7 +25,7 @@
   </ul>
   <div class="switchtheme" *ngIf="!settings.layout.isCollapsed">
     <span><i class="anticon anticon-bulb"></i>Switch Theme</span>
-    <nz-switch [(ngModel)]="theme">
+    <nz-switch [(ngModel)]="theme" (click)="switch()">
       <span checked>Dark</span>
       <span unchecked>Light</span>
     </nz-switch>

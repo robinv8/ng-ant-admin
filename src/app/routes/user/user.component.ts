@@ -77,6 +77,11 @@ export class UserComponent implements OnInit {
   _options = null;
   _value2: any[] = null;
   gridView = {
+    /**
+     * @field 字段
+     * @text  显示名称
+     * @type 字段类型 {1:文本,2:按钮,3:图片,4：过滤器}
+     */
     tableFields: [
       {
         field: 'id',
@@ -84,7 +89,8 @@ export class UserComponent implements OnInit {
       },
       {
         field: 'avatar',
-        text: 'Avatar'
+        text: 'Avatar',
+        type: 3
       },
       {
         field: 'name',
@@ -109,6 +115,7 @@ export class UserComponent implements OnInit {
       {
         field: 'isMale',
         text: 'IsMale',
+        type: 4
       },
       {
         field: 'email',
