@@ -5,6 +5,7 @@ import {HomeComponent} from './routes/home/home.component';
 import {LoginComponent} from './routes/login/login.component';
 import {DashboardComponent} from './routes/dashboard/dashboard.component';
 import {UserComponent} from './routes/user/user.component';
+import {ChartsComponent} from './routes/charts/charts.component';
 import {CanAuthProvide} from './core/services/auth.service';
 
 const routes: Routes = [
@@ -12,7 +13,8 @@ const routes: Routes = [
     path: '', component: HomeComponent, canActivate: [CanAuthProvide],
     children: [
       {path: 'dashboard', component: DashboardComponent, canActivate: [CanAuthProvide]},
-      {path: 'user', component: UserComponent, canActivate: [CanAuthProvide]}
+      {path: 'user', component: UserComponent, canActivate: [CanAuthProvide]},
+      {path: 'charts', component: ChartsComponent, canActivate: [CanAuthProvide]}
     ]
   },
   {path: 'login', component: LoginComponent, canLoad: [CanAuthProvide]},

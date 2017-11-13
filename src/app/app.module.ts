@@ -12,6 +12,7 @@ import {HomeModule} from './routes/home/home.module';
 import {DashboardModule} from './routes/dashboard/dashboard.module';
 import {CanAuthProvide} from './core/services/auth.service';
 import {UserModule} from './routes/user/user.module';
+import {ChartsModule} from './routes/charts/charts.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {UserModule} from './routes/user/user.module';
     HomeModule,
     DashboardModule,
     LayoutModule,
-    UserModule
+    UserModule,
+    ChartsModule
   ],
   providers: [SettingsService, CanAuthProvide],
   bootstrap: [AppComponent],
