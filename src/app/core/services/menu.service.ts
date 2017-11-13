@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {AHttpClinet} from './http.client';
 
 @Injectable()
-export class AppService {
-  constructor(private http: HttpClient) {
+export class MenuService {
+  constructor(private http: AHttpClinet) {
 
   }
 

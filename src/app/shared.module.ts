@@ -10,13 +10,10 @@ import {StorageModule} from './core/storage/storage.module';
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
     HttpClientModule,
     NgZorroAntdModule.forRoot(),
     CookieModule.forRoot(),
-    StorageModule
+    StorageModule,
   ],
   exports: [
     CommonModule,

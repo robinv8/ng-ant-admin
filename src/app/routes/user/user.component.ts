@@ -157,7 +157,7 @@ export class UserComponent implements OnInit {
   };
 
   _console(value) {
-    console.log(value);
+    //console.log(value);
   }
   constructor(private userService: UserService, private message: NzMessageService, private modalService: NzModalService) {
   }
@@ -197,12 +197,12 @@ export class UserComponent implements OnInit {
   }
 
   _delete(id) {
-    this.userService.remove(id)
+   /* this.userService.remove(id)
       .then((result: any) => {
         this.refreshData();
         this.message.info(result.msg);
       }, (err) => {
-      });
+      });*/
   }
 
   async ngOnInit() {

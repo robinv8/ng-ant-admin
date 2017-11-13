@@ -3,16 +3,10 @@ import {NgModule} from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SharedModule} from './shared.module';
 import {AppComponent} from './app.component';
-import {SettingsService} from './core/services/settings.service';
-import {routing} from './app.routing';
 import {LayoutModule} from './layout/layout.module';
-import {LoaderModule} from './components/loader/loader.module';
-import {LoginModule} from './routes/login/login.module';
-import {HomeModule} from './routes/home/home.module';
-import {DashboardModule} from './routes/dashboard/dashboard.module';
-import {CanAuthProvide} from './core/services/auth.service';
-import {UserModule} from './routes/user/user.module';
-import {ChartsModule} from './routes/charts/charts.module';
+import {ComponentsModule} from './components/Components.module';
+import {RoutesModule} from './routes/routes.module';
+import {CoreModule} from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -22,16 +16,11 @@ import {ChartsModule} from './routes/charts/charts.module';
     BrowserModule,
     BrowserAnimationsModule,
     SharedModule.forRoot(),
-    routing,
-    LoaderModule,
-    LoginModule,
-    HomeModule,
-    DashboardModule,
+    ComponentsModule,
     LayoutModule,
-    UserModule,
-    ChartsModule
+    RoutesModule,
+    CoreModule
   ],
-  providers: [SettingsService, CanAuthProvide],
   bootstrap: [AppComponent],
 })
 export class AppModule {

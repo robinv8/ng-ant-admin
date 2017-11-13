@@ -1,30 +1,25 @@
-import {Component, OnChanges} from '@angular/core';
+import {Component} from '@angular/core';
 import {SettingsService} from '../../core/services/settings.service';
-import {AppService} from '../../app.service';
+import {MenuService} from '../../core/services/menu.service';
 
 @Component({
   selector: 'app-sider',
   templateUrl: 'sider.component.html',
   styleUrls: ['./sider.component.less'],
-  providers: [AppService]
 })
 
-export class SiderComponent implements OnChanges {
+export class SiderComponent {
   theme = true;
   menus: any = [];
 
-  constructor(public settings: SettingsService, private appService: AppService) {
+  constructor(public settings: SettingsService, private menuService: MenuService) {
     this.theme = this.settings.layout.isDark;
-    this.appService.getMenu().then((result: any) => {
+    this.menuService.getMenu().then((result: any) => {
       this.menus = result.data;
     });
   }
 
-  ngOnChanges() {
-  }
-
   switch() {
-    console.log(this.settings.layout.isDark);
     this.settings.setLayout('isDark', !this.settings.layout.isDark);
   }
 }

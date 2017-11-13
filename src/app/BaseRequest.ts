@@ -8,9 +8,8 @@ export class BaseService {
   module: string;
   http: HttpClient;
 
-  constructor(http: HttpClient, module: string) {
-    this.http = http;
-    this.module = module
+  constructor(module: string) {
+    this.module = module;
   }
 
   /**
@@ -21,9 +20,9 @@ export class BaseService {
     const promise = new Promise((resolve, reject) => {
       this.http.get(`${this.apiPath}${this.module}/all`).subscribe((result: any) => {
         if (result.code === 1) {
-          resolve(result)
+          resolve(result);
         } else {
-          reject(result)
+          reject(result);
         }
       });
     })
@@ -39,9 +38,9 @@ export class BaseService {
     const promise = new Promise((resolve, reject) => {
       this.http.get(`${this.apiPath}${this.module}/${id}`).subscribe((result: any) => {
         if (result.code === 1) {
-          resolve(result)
+          resolve(result);
         } else {
-          reject(result)
+          reject(result);
         }
       });
     })
@@ -57,9 +56,9 @@ export class BaseService {
     const promise = new Promise((resolve, reject) => {
       this.http.post(`${this.apiPath}${this.module}`, params).subscribe((result: any) => {
         if (result.code === 1) {
-          resolve(result)
+          resolve(result);
         } else {
-          reject(result)
+          reject(result);
         }
       });
     })
@@ -76,9 +75,9 @@ export class BaseService {
     const promise = new Promise((resolve, reject) => {
       this.http.put(`${this.apiPath}${this.module}/${id}`, params).subscribe((result: any) => {
         if (result.code === 1) {
-          resolve(result)
+          resolve(result);
         } else {
-          reject(result)
+          reject(result);
         }
       });
     });
@@ -95,9 +94,9 @@ export class BaseService {
     const promise = new Promise((resolve, reject) => {
       this.http.get(`${this.apiPath}${this.module}?pageIndex=${pageIndex}&pageSize=${pageSize}`).subscribe((result: any) => {
         if (result.code === 1) {
-          resolve(result)
+          resolve(result);
         } else {
-          reject(result)
+          reject(result);
         }
       });
     });
@@ -113,9 +112,9 @@ export class BaseService {
     const promise = new Promise((resolve, reject) => {
       this.http.delete(`${this.apiPath}${this.module}/` + id).subscribe((result: any) => {
         if (result.code === 1) {
-          resolve(result)
+          resolve(result);
         } else {
-          reject(result)
+          reject(result);
         }
       });
     });

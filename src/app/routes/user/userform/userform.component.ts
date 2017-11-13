@@ -116,12 +116,12 @@ export class UserformComponent implements OnInit {
   }
 
   findById() {
-    this.userService.queryById(this._id)
+    /*this.userService.queryById(this._id)
       .then((result: any) => {
         this.formData = result.data;
       }, (err) => {
         this.message.warning(err.msg);
-      });
+      });*/
   }
 
   ngOnInit() {

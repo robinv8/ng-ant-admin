@@ -1,11 +1,9 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {BaseService} from '../../BaseRequest';
+import {AHttpClinet} from '../../core/services/http.client';
 
 @Injectable()
-export class UserService extends BaseService {
-  constructor(http: HttpClient) {
-    super(http, 'admins');
+export class UserService {
+  constructor(private http: AHttpClinet) {
   }
 
   getUserList(pageIndex, pageSize) {
