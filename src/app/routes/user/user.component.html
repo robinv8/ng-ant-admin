@@ -1,34 +1,55 @@
-<div class="ant-row">
-  <div class="user">
-    <div class="ant-sel">
-      <!--<nz-input [nzType]="'search'" [nzPlaceHolder]="'Search Name'" [(ngModel)]="_value2" [nzPlaceHolder]="'default size'" class="ant-input">-->
-      <!--</nz-input>-->
-      <nz-input [nzType]="'search'" [nzPlaceHolder]="'input search text'" [(ngModel)]="_value" class="ant_search"></nz-input>
+<div nz-row style="margin-left: -12px;margin-right: -12px;">
+  <div nz-col [nzXl]="{ span: 4}" [nzMd]="{ span: 8}"
+       style="padding-left: 12px; padding-right: 12px; margin-bottom: 16px;">
+    <nz-input [nzType]="'search'" [nzPlaceHolder]="'input search text'" [(ngModel)]="_value"
+              class="ant_search"></nz-input>
+  </div>
+  <div nz-col [nzXl]="{ span: 4}" [nzMd]="{ span: 8}"
+       style="padding-left: 12px; padding-right: 12px; margin-bottom: 16px;">
+    <nz-cascader [class.class123]="true" [nzOptions]="_options" [(ngModel)]="_value2"
+                 (ngModelChange)="_console($event)" (nzChange)="_console($event)">
+    </nz-cascader>
+  </div>
+
+  <div nz-col [nzXl]="{ span: 6}" [nzMd]="{ span: 8}" [nzSm]="{ span: 12}"
+       style="padding-left: 12px; padding-right: 12px; margin-bottom: 16px;">
+    <div class="filterItem">
+      <div class="labelWrap">
+        <span>Createtime</span>
+      </div>
+      <div class="item">
+        <div nz-col [nzSpan]="12">
+          <nz-datepicker (ngModelChange)="_startDate=$event;_startValueChange()" [ngModel]="_startDate"
+                         [nzDisabledDate]="_disabledStartDate" [nzShowTime]="true" [nzFormat]="'YYYY-MM-DD HH:mm:ss'"
+                         [nzPlaceHolder]="'Start date'"></nz-datepicker>
+        </div>
+        <div nz-col [nzSpan]="12">
+          <nz-datepicker (ngModelChange)="_endDate=$event;_endValueChange()" [ngModel]="_endDate"
+                         [nzDisabledDate]="_disabledEndDate" [nzShowTime]="_endTime" [nzFormat]="'YYYY-MM-DD HH:mm:ss'"
+                         [nzPlaceHolder]="'End date'"></nz-datepicker>
+        </div>
+      </div>
     </div>
-    <div class="ant-sel">
-      <nz-cascader [class.class123]="true" [nzOptions]="_options" [(ngModel)]="_value2" (ngModelChange)="_console($event)" (nzChange)="_console($event)" >
-      </nz-cascader>
-    </div>
-    <div class="ant-sel" style="width: 33%;">
-      <div class="ant_time_title">Createtime</div>
-      <nz-datepicker style="width: 40%;" (ngModelChange)="_startDate=$event;_startValueChange()" [ngModel]="_startDate" [nzDisabledDate]="_disabledStartDate" [nzShowTime]="true" [nzFormat]="'YYYY-MM-DD HH:mm:ss'" [nzPlaceHolder]="'Start date'"></nz-datepicker>
-      <nz-datepicker style="width: 40%;" (ngModelChange)="_endDate=$event;_endValueChange()" [ngModel]="_endDate" [nzDisabledDate]="_disabledEndDate" [nzShowTime]="_endTime" [nzFormat]="'YYYY-MM-DD HH:mm:ss'" [nzPlaceHolder]="'End date'"></nz-datepicker>
-    </div>
-    <button nz-button [nzType]="'primary'" [ngStyle]="_margin">
-      <span>Search</span>
-    </button>
-    <button nz-button [nzType]="'default'" [ngStyle]="_margin">
-      <span>Reset</span>
-    </button>
-    <div class="head_rt">
-      <nz-switch [(ngModel)]="switchValue"></nz-switch>
-      <button nz-button [nzType]="'default'" [ngStyle]="_margin" ngStyle="_create">
-        <span>Create</span>
-      </button>
+  </div>
+  <div nz-col [nzXl]="{ span: 10 }" [nzMd]="{ span: 24}" [nzSm]="{ span: 24}"
+       style="padding-left: 12px; padding-right: 12px; margin-bottom: 16px;">
+    <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+      <div>
+        <button nz-button [nzType]="'primary'" [ngStyle]="_margin">
+          <span>Search</span>
+        </button>
+        <button nz-button [nzType]="'default'" [ngStyle]="_margin">
+          <span>Reset</span>
+        </button>
+      </div>
+      <div>
+        <button nz-button [nzType]="'default'" [ngStyle]="_margin" ngStyle="_create" (click)="create()">
+          <span>Create</span>
+        </button>
+      </div>
     </div>
   </div>
 </div>
-
 <app-table [gridView]="gridView" [tableData]="dataSet"
            [total]="total"
            [(pageIndex)]="current"

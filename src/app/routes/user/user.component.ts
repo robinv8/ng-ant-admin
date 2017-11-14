@@ -58,6 +58,7 @@ const other_options = [{
     }],
   }],
 }];
+
 @Component({
   selector: 'app-user',
   templateUrl: 'user.component.html',
@@ -159,6 +160,7 @@ export class UserComponent implements OnInit {
   _console(value) {
     //console.log(value);
   }
+
   constructor(private userService: UserService, private message: NzMessageService, private modalService: NzModalService) {
   }
 
@@ -175,7 +177,7 @@ export class UserComponent implements OnInit {
   }
 
 
-  create(id) {
+  create(id?: string) {
     const subscription = this.modalService.open({
       title: id ? '修改管理员信息' : '创建管理员信息',
       content: UserformComponent,
@@ -197,12 +199,12 @@ export class UserComponent implements OnInit {
   }
 
   _delete(id) {
-   /* this.userService.remove(id)
-      .then((result: any) => {
-        this.refreshData();
-        this.message.info(result.msg);
-      }, (err) => {
-      });*/
+    /* this.userService.remove(id)
+       .then((result: any) => {
+         this.refreshData();
+         this.message.info(result.msg);
+       }, (err) => {
+       });*/
   }
 
   async ngOnInit() {
