@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {AHttpClinet} from '../../core/services/http.client';
+import {AHttpClinet} from '@core/services/http.client';
 
 @Injectable()
 export class UserService {

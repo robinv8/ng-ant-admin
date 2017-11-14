@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {SettingsService} from '../../core/services/settings.service';
-import {MenuService} from '../../core/services/menu.service';
+import {MenuService} from '@core/services/menu.service';
 
 @Component({
   selector: 'app-sider',

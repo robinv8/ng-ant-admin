@@ -1,5 +1,4 @@
 import {NgModule} from '@angular/core';
-
 import {SiderComponent} from './sider.component';
 import {SharedModule} from '../../shared.module';
 

@@ -4,9 +4,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SharedModule} from './shared.module';
 import {AppComponent} from './app.component';
 import {LayoutModule} from './layout/layout.module';
-import {ComponentsModule} from './components/Components.module';
+import {ComponentsModule} from '@components/components.module';
 import {RoutesModule} from './routes/routes.module';
-import {CoreModule} from './core/core.module';
+import {CoreModule} from '@core/core.module';
 
 @NgModule({
   declarations: [

@@ -5,7 +5,7 @@ import {HomeComponent} from '../routes/home/home.component';
 import {LoginComponent} from '../routes/login/login.component';
 import {DashboardComponent} from '../routes/dashboard/dashboard.component';
 import {UserComponent} from '../routes/user/user.component';
-import {CanAuthProvide} from '../core/services/auth.service';
+import {CanAuthProvide} from '@core/services/auth.service';
 import {ChartsComponent} from './charts/charts.component';
 
 export const routes: Routes = [

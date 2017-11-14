@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
-import {SettingsService} from '../../core/services/settings.service';
-import {SessionStorageService} from '../../core/storage/storage.module';
+import {SettingsService} from '@core/services/settings.service';
+import {SessionStorageService} from '@core/storage/storage.module';
 
 @Component({
   selector: 'app-header',
