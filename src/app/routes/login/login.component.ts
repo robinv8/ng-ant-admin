@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
       const password = this.validateForm.value.password;
       this.loginService.login(userName, password)
         .then(result => {
-          this.router.navigate(['home']);
+          this.router.navigate(['']);
         }, (err) => {
           this.loadStatus = false;
           this.loginBtn = 'Login';
