@@ -9,7 +9,7 @@ import {ChartsModule} from './charts/charts.module';
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, {useHash: true}),
   ],
   exports: [
     DashboardModule,
