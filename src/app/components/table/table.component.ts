@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {GridView} from '@core/interfaces/table.interface';
 
 @Component({
@@ -6,9 +6,10 @@ import {GridView} from '@core/interfaces/table.interface';
   templateUrl: 'table.component.html',
   styleUrls: ['./table.component.less']
 })
-export class TableComponent implements OnInit {
+export class TableComponent {
   _allChecked = false;
   _indeterminate = false;
+
   @Input() gridView: GridView;
   @Input() tableData: Array<any>;
   @Input() total: number;
@@ -20,14 +21,9 @@ export class TableComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit() {
-    this.pageSize = this.pageSize || 10;
-  }
-
   _refreshData() {
     this.refreshData.emit(this.pageIndex);
   }
-
 
   _checkAll(value) {
     if (value) {
@@ -40,12 +36,12 @@ export class TableComponent implements OnInit {
       });
     }
     this._refreshStatus();
-  };
+  }
 
   _refreshStatus() {
     const allChecked = this.tableData.every(value => value.checked === true);
     const allUnChecked = this.tableData.every(value => !value.checked);
     this._allChecked = allChecked;
     this._indeterminate = (!allChecked) && (!allUnChecked);
-  };
+  }
 }

@@ -1,12 +1,17 @@
 import {Injectable} from '@angular/core';
-import {AHttpClinet} from '@core/services/http.client';
+import {NHttpClinet} from '@core/utils/http.client';
 import {TableFiled} from '@core/interfaces/table.interface';
 
 @Injectable()
 export class UserService {
-  constructor(private http: AHttpClinet) {
+
+  constructor(private http: NHttpClinet) {
   }
 
+  /**
+   * 获取列表表头
+   * @returns {TableFiled[]}
+   */
   getTableHeader(): TableFiled[] {
     return [
       {

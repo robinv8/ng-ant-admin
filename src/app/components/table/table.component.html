@@ -1,10 +1,10 @@
-<nz-table *ngIf="gridView" #nzTable
+<nz-table #nzTable
           [nzAjaxData]="tableData"
           [nzTotal]="total "
           [nzLoading]="loading"
           [(nzPageIndex)]="pageIndex"
           (nzPageIndexChange)="_refreshData()"
-          [nzPageSize]="pageSize "
+          [nzPageSize]="pageSize"
           (nzPageSizeChange)="_refreshData()">
   <thead nz-thead>
   <tr>

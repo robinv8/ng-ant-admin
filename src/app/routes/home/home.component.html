@@ -2,11 +2,13 @@
   <app-sider></app-sider>
   <div class="main">
     <app-header></app-header>
-    <app-bread></app-bread>
-    <div class="container">
-      <div class="content">
-        <div class="contentInner">
-          <router-outlet></router-outlet>
+    <div *ngIf="settings.menuStatus">
+      <app-bread></app-bread>
+      <div class="container">
+        <div class="content">
+          <div class="contentInner">
+            <router-outlet></router-outlet>
+          </div>
         </div>
       </div>
     </div>

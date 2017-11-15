@@ -1,12 +1,12 @@
 import {NgModule} from '@angular/core';
-import {AHttpClinet} from './services/http.client';
+import {NHttpClinet} from './utils/http.client';
 import {CanAuthProvide} from './services/auth.service';
 import {SettingsService} from './services/settings.service';
 import {MenuService} from './services/menu.service';
 
 @NgModule({
   providers: [
-    AHttpClinet,
+    NHttpClinet,
     CanAuthProvide,
     SettingsService,
     MenuService,

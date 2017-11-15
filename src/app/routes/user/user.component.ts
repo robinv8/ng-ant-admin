@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {NzMessageService, NzModalService} from 'ng-zorro-antd';
 import {UserService} from './user.service';
 import {UserformComponent} from './userform/userform.component';
-import {GridView} from '@core/interfaces/table.interface';
+
+import {GridComponent} from '@core/grid.component';
 
 const init_options = [{
   value: 'zhejiang',
@@ -68,34 +69,36 @@ const other_options = [{
 })
 
 
-export class UserComponent implements OnInit {
-  gridView: GridView = {};
-
-  _value: string;
-  current = 1;
-  pageSize = 10;
-  total = 1;
-  dataSet = [];
-  loading = true;
-  roleData: any;
-  _options = null;
-
-
-  _console(value) {
-    //console.log(value);
-  }
+export class UserComponent extends GridComponent implements OnInit {
 
   constructor(private userService: UserService, private message: NzMessageService, private modalService: NzModalService) {
-    this.gridView.tableFields = this.userService.getTableHeader();
+    super(userService);
+
+    this.setGridView('operations', [
+      {
+        text: '修改',
+        event: (id) => {
+          this.createOrUpdate(id);
+        }
+      },
+      {
+        text: '删除',
+        isConfirm: true,
+        title: '确定要删除这个任务吗?',
+        event: () => {
+        }
+      }
+    ]);
   }
 
   refreshData = (event?: number) => {
-    this.loading = true;
+    this.setLoading(true);
     this.userService.getUserList(event || this.current, this.pageSize)
       .then((result: any) => {
-        this.dataSet = result.data;
-        this.total = result.total;
-        this.loading = false;
+        const {data, total} = result;
+        this.setTableData(data);
+        this.setTotal(total);
+        this.setLoading(false);
       }, (err) => {
 
       });
@@ -134,31 +137,11 @@ export class UserComponent implements OnInit {
 
 
   ngOnInit() {
-    this.gridView.operations = [
-      {
-        text: '修改',
-        event: (id) => {
-          this.createOrUpdate(id);
-        }
-      },
-      {
-        text: '删除',
-        isConfirm: true,
-        title: '确定要删除这个任务吗?',
-        event: () => {
-        }
-      }
-    ];
-    /*await this.roleService.queryAll()
-     .then((result: any) => {
-     this.roleData = result.data;
-     })
-     console.log(this.roleData);*/
     this.refreshData();
 
     // let's set nzOptions in a asynchronous  way
-    setTimeout(() => {
+    /*setTimeout(() => {
       this._options = init_options;
-    }, 100);
+    }, 100);*/
   }
 }

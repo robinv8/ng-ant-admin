@@ -34,4 +34,15 @@ export class SettingsService {
     }
     return false;
   }
+
+  get menuStatus(): boolean {
+    if (this._loaded === undefined) {
+      this._loaded = false;
+    }
+    return this._loaded;
+  }
+
+  setMenuStatus(value: boolean) {
+    this._loaded = value;
+  }
 }

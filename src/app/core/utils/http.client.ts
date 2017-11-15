@@ -5,6 +5,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import * as moment from 'moment';
 import {environment} from '../../../environments/environment';
+import {NzMessageService} from 'ng-zorro-antd';
 
 /**
  * 封装HttpClient，主要解决：
@@ -13,8 +14,8 @@ import {environment} from '../../../environments/environment';
  * + 统一处理时间格式问题
  */
 @Injectable()
-export class AHttpClinet {
-  constructor(private http: HttpClient) {
+export class NHttpClinet {
+  constructor(private http: HttpClient, private message: NzMessageService) {
   }
 
   private _loading = false;
@@ -69,6 +70,7 @@ export class AHttpClinet {
       .do(() => this.end())
       .catch((res) => {
         this.end();
+        this.message.error('联网失败，请稍后重试！');
         return res;
       });
   }
@@ -89,6 +91,9 @@ export class AHttpClinet {
       .do(() => this.end())
       .catch((res) => {
         this.end();
+        if (res.error.code === '404') {
+          this.message.error('请求失败，请重试');
+        }
         return res;
       });
   }
@@ -110,5 +115,9 @@ export class AHttpClinet {
         this.end();
         return res;
       });
+  }
+
+  errService(errData: any) {
+
   }
 }
