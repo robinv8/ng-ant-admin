@@ -1,4 +1,5 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {GridView} from '@core/interfaces/table.interface';
 
 @Component({
   selector: 'app-table',
@@ -8,7 +9,7 @@ import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 export class TableComponent implements OnInit {
   _allChecked = false;
   _indeterminate = false;
-  @Input() gridView: any;
+  @Input() gridView: GridView;
   @Input() tableData: Array<any>;
   @Input() total: number;
   @Input() pageIndex: number;

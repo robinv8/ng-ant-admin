@@ -1,4 +1,4 @@
-<nz-table #nzTable
+<nz-table *ngIf="gridView" #nzTable
           [nzAjaxData]="tableData"
           [nzTotal]="total "
           [nzLoading]="loading"
@@ -39,14 +39,14 @@
             <i class="anticon anticon-down"></i>
           </button>
           <ul nz-menu>
-            <ng-template ngFor let-handle [ngForOf]="fieldObj.handles" let-i="index">
+            <ng-template ngFor let-handle [ngForOf]="gridView.operations" let-i="index">
               <li nz-menu-item>
-                <a href="javascript:;" *ngIf="!handle.confirm;else elseBlock"
+                <a href="javascript:;" *ngIf="!handle.isConfirm;else elseBlock"
                    (click)="handle.event(data[handle.key]||data.id)">{{handle.text}}</a>
                 <ng-template #elseBlock>
-                  <nz-popconfirm [nzTitle]="handle.confirm.title"
-                                 (nzOnConfirm)="handle.confirm.event.ok(data[handle.key])"
-                                 (nzOnCancel)="handle.confirm.event.cancel()">
+                  <nz-popconfirm [nzTitle]="handle.title"
+                                 (nzOnConfirm)="handle.event.ok(data[handle.key])"
+                                 (nzOnCancel)="handle.event.cancel()">
                     <a href="javascript:;" nz-popconfirm>{{handle.text}}</a>
                   </nz-popconfirm>
                 </ng-template>

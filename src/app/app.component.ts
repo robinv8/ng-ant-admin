@@ -1,16 +1,15 @@
-import {Component} from '@angular/core';
-import {SettingsService} from './core/services/settings.service';
+import {Component, Renderer2} from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.less'],
+  styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  constructor(public settings: SettingsService) {
+  constructor(private renderer: Renderer2) {
     window.onload = () => {
-      this.settings.setLoadStatus(true);
+      const ele = document.querySelector('.loader');
+      this.renderer.addClass(ele, 'hidden');
     };
-    console.log();
   }
 }

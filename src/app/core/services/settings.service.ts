@@ -34,15 +34,4 @@ export class SettingsService {
     }
     return false;
   }
-
-  get loadStatus(): boolean {
-    if (this._loaded === undefined) {
-      this._loaded = false;
-    }
-    return this._loaded;
-  }
-
-  setLoadStatus(value: boolean) {
-    this._loaded = value;
-  }
 }

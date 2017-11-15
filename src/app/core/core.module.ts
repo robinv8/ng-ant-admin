@@ -9,7 +9,7 @@ import {MenuService} from './services/menu.service';
     AHttpClinet,
     CanAuthProvide,
     SettingsService,
-    MenuService
+    MenuService,
   ]
 })
 

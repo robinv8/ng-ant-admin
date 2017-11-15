@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NzMessageService, NzModalService} from 'ng-zorro-antd';
 import {UserService} from './user.service';
 import {UserformComponent} from './userform/userform.component';
+import {GridView} from '@core/interfaces/table.interface';
 
 const init_options = [{
   value: 'zhejiang',
@@ -66,9 +67,11 @@ const other_options = [{
   providers: [UserService]
 })
 
+
 export class UserComponent implements OnInit {
+  gridView: GridView = {};
+
   _value: string;
-  switchValue = true;
   current = 1;
   pageSize = 10;
   total = 1;
@@ -76,92 +79,14 @@ export class UserComponent implements OnInit {
   loading = true;
   roleData: any;
   _options = null;
-  _value2: any[] = null;
-  gridView = {
-    /**
-     * @field 字段
-     * @text  显示名称
-     * @type 字段类型 {1:文本,2:按钮,3:图片,4：过滤器}
-     */
-    tableFields: [
-      {
-        field: 'id',
-        text: 'Id'
-      },
-      {
-        field: 'avatar',
-        text: 'Avatar',
-        type: 3
-      },
-      {
-        field: 'name',
-        text: 'Name'
-      },
-      {
-        field: 'nickName',
-        text: 'NickName'
-      },
-      {
-        field: 'phone',
-        text: 'Phone',
-      },
-      {
-        field: 'age',
-        text: 'Age',
-      },
-      {
-        field: 'address',
-        text: 'Address',
-      },
-      {
-        field: 'isMale',
-        text: 'IsMale',
-        type: 4
-      },
-      {
-        field: 'email',
-        text: 'Email',
-      },
-      {
-        field: 'createTime',
-        text: 'CreateTime',
-      },
-      {
-        type: 2,
-        text: '操作',
-        handles: [
-          {
-            text: '修改',
-            key: 'adminId',
-            event: (id) => {
-              this.create(id);
-            }
-          },
-          {
-            text: '删除',
-            key: 'adminId',
-            confirm: {
-              title: '确定要删除这个任务吗？',
-              event: {
-                ok: (id) => {
-                  this._delete(id);
-                },
-                cancel: () => {
-                  this.message.info('click cancel');
-                }
-              }
-            }
-          }
-        ]
-      }
-    ]
-  };
+
 
   _console(value) {
     //console.log(value);
   }
 
   constructor(private userService: UserService, private message: NzMessageService, private modalService: NzModalService) {
+    this.gridView.tableFields = this.userService.getTableHeader();
   }
 
   refreshData = (event?: number) => {
@@ -177,7 +102,7 @@ export class UserComponent implements OnInit {
   }
 
 
-  create(id?: string) {
+  createOrUpdate(id?: string) {
     const subscription = this.modalService.open({
       title: id ? '修改管理员信息' : '创建管理员信息',
       content: UserformComponent,
@@ -207,7 +132,23 @@ export class UserComponent implements OnInit {
        });*/
   }
 
-  async ngOnInit() {
+
+  ngOnInit() {
+    this.gridView.operations = [
+      {
+        text: '修改',
+        event: (id) => {
+          this.createOrUpdate(id);
+        }
+      },
+      {
+        text: '删除',
+        isConfirm: true,
+        title: '确定要删除这个任务吗?',
+        event: () => {
+        }
+      }
+    ];
     /*await this.roleService.queryAll()
      .then((result: any) => {
      this.roleData = result.data;
