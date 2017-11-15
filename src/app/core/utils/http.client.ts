@@ -99,6 +99,25 @@ export class NHttpClinet {
   }
 
   /**
+   * PUT请求
+   * @param {string} url
+   * @param params
+   * @returns {Promise<T>}
+   */
+  put(url: string, params?: any) {
+    this.begin();
+    return this.http
+      .put(url, {
+        params: this.parseParams(params)
+      })
+      .do(() => this.end())
+      .catch((res) => {
+        this.end();
+        return res;
+      });
+  }
+
+  /**
    * DELETE请求
    *
    * @param {string} url URL地址
@@ -115,9 +134,5 @@ export class NHttpClinet {
         this.end();
         return res;
       });
-  }
-
-  errService(errData: any) {
-
   }
 }

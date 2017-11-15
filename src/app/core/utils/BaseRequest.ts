@@ -1,15 +1,15 @@
-import {HttpClient} from '@angular/common/http';
+import {NHttpClinet} from '@core/utils/http.client';
 
 /**
  * BaseService contains public crud
  */
 export class BaseService {
-  apiPath = 'http://www.easy-mock.com/mock/5a011b579d3ceb4a354379db';
   module: string;
-  http: HttpClient;
+  http: NHttpClinet;
 
-  constructor(module: string) {
+  constructor(module: string, http: NHttpClinet) {
     this.module = module;
+    this.http = http;
   }
 
   /**
@@ -18,14 +18,14 @@ export class BaseService {
    */
   queryAll() {
     const promise = new Promise((resolve, reject) => {
-      this.http.get(`${this.apiPath}${this.module}/all`).subscribe((result: any) => {
+      this.http.get(`${this.http.SERVER_URL}${this.module}/all`).subscribe((result: any) => {
         if (result.code === 1) {
           resolve(result);
         } else {
           reject(result);
         }
       });
-    })
+    });
     return promise;
   }
 
@@ -36,14 +36,14 @@ export class BaseService {
    */
   queryById(id: string) {
     const promise = new Promise((resolve, reject) => {
-      this.http.get(`${this.apiPath}${this.module}/${id}`).subscribe((result: any) => {
+      this.http.get(`${this.http.SERVER_URL}${this.module}/${id}`).subscribe((result: any) => {
         if (result.code === 1) {
           resolve(result);
         } else {
           reject(result);
         }
       });
-    })
+    });
     return promise;
   }
 
@@ -54,14 +54,14 @@ export class BaseService {
    */
   create(params: Object) {
     const promise = new Promise((resolve, reject) => {
-      this.http.post(`${this.apiPath}${this.module}`, params).subscribe((result: any) => {
+      this.http.post(`${this.http.SERVER_URL}${this.module}`, params).subscribe((result: any) => {
         if (result.code === 1) {
           resolve(result);
         } else {
           reject(result);
         }
       });
-    })
+    });
     return promise;
   }
 
@@ -73,7 +73,7 @@ export class BaseService {
    */
   update(id: string, params: any) {
     const promise = new Promise((resolve, reject) => {
-      this.http.put(`${this.apiPath}${this.module}/${id}`, params).subscribe((result: any) => {
+      this.http.put(`${this.http.SERVER_URL}${this.module}/${id}`, params).subscribe((result: any) => {
         if (result.code === 1) {
           resolve(result);
         } else {
@@ -92,7 +92,7 @@ export class BaseService {
    */
   queryList(pageIndex: number, pageSize: number) {
     const promise = new Promise((resolve, reject) => {
-      this.http.get(`${this.apiPath}${this.module}?pageIndex=${pageIndex}&pageSize=${pageSize}`).subscribe((result: any) => {
+      this.http.get(`${this.http.SERVER_URL}${this.module}?pageIndex=${pageIndex}&pageSize=${pageSize}`).subscribe((result: any) => {
         if (result.code === 1) {
           resolve(result);
         } else {
@@ -110,7 +110,7 @@ export class BaseService {
    */
   remove(id: string) {
     const promise = new Promise((resolve, reject) => {
-      this.http.delete(`${this.apiPath}${this.module}/` + id).subscribe((result: any) => {
+      this.http.delete(`${this.http.SERVER_URL}${this.module}/` + id).subscribe((result: any) => {
         if (result.code === 1) {
           resolve(result);
         } else {

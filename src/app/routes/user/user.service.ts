@@ -1,11 +1,13 @@
 import {Injectable} from '@angular/core';
 import {NHttpClinet} from '@core/utils/http.client';
 import {TableFiled} from '@core/interfaces/table.interface';
+import {BaseService} from '@core/utils/BaseRequest';
 
 @Injectable()
-export class UserService {
+export class UserService extends BaseService {
 
-  constructor(private http: NHttpClinet) {
+  constructor(http: NHttpClinet) {
+    super('user', http);
   }
 
   /**
