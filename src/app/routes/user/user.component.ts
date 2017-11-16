@@ -100,11 +100,13 @@ export class UserComponent extends GridComponent implements OnInit {
    * @param {string} id
    */
   createOrUpdate(id?: string) {
+    const self = this;
     const subscription = this.modalService.open({
-      title: id ? '修改管理员信息' : '创建管理员信息',
+      title: id ? 'update' : 'create',
       content: UserformComponent,
+      footer: false,
       onOk() {
-        debugger
+        self.getData();
       },
       onCancel() {
         console.log('Click cancel');
@@ -125,6 +127,10 @@ export class UserComponent extends GridComponent implements OnInit {
    * @param {string} id
    */
   delete(id: string) {
+
+  }
+
+  submitForm(formData?: any) {
 
   }
 

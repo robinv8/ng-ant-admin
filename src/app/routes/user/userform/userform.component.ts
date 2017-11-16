@@ -11,12 +11,26 @@ import {UserService} from '../user.service';
 @Component({
   selector: 'app-userform',
   templateUrl: './userform.component.html',
-  styleUrls: ['./userform.component.css'],
+  styleUrls: ['./userform.component.less'],
   providers: [UserService]
 })
 export class UserformComponent implements OnInit {
   validateForm: FormGroup;
   _id: string;
+
+  /**
+   * 表单模型对象
+   * @type {{name: string; nickName: string; gender: string; age: string; phone: string; email: string; address: string}}
+   */
+  formData = {
+    name: '2112',
+    nickName: '',
+    gender: '',
+    age: '',
+    phone: '',
+    email: '',
+    address: ''
+  };
   _options = [{
     value: 'zhejiang',
     label: 'Zhejiang',
@@ -45,24 +59,13 @@ export class UserformComponent implements OnInit {
         isLeaf: true
       }],
     }],
-  }]
-  formData = {
-    name: '',
-    nickName: '',
-    gender: '',
-    age: '',
-    phone: '',
-    email: '',
-    address: ''
-  };
+  }];
 
   @Input()
   set id(value: string) {
     this._id = value;
-    if (this._id) {
-      this.findById();
-    }
   }
+
 
   constructor(private message: NzMessageService, private userService: UserService, private fb: FormBuilder, private subject: NzModalSubject) {
     this.subject.on('onDestory', () => {
@@ -70,60 +73,32 @@ export class UserformComponent implements OnInit {
     });
   }
 
-  _submitForm(formData?: any) {
-    return;
-    /*for (const i in this.validateForm.controls) {
+  /**
+   * 表单提交方法
+   * @private
+   */
+  _submitForm() {
+    for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();
     }
-    if (this._id) {
-      this.userService.update(this._id, this.validateForm.value)
-        .then((result) => {
-          this.subject.next('ok');
-          this.subject.destroy('onOk');
-        }, (err) => {
-          this.message.warning(err.msg);
-        })
-    } else {
-      this.userService.create(this.validateForm.value)
-        .then((result) => {
-          this.subject.next('ok');
-          this.subject.destroy('onOk');
-        }, (err) => {
-          this.message.warning(err.msg);
-        })
-    }*/
+    // data submit
+
+    //  destroy方法可以传入onOk或者onCancel。默认是onCancel
+    //数据提交成功调用一下代码
+    //this.subject.destroy('onOk');
   }
 
-  _handleCancel(e) {
-    this.subject.destroy('onCancel');
-  }
-
-  getRole() {
-    /* this.roleService.queryAll()
-       .then((result: any) => {
-         this.roleData = result.data;
-       })*/
-  }
-
+  /**
+   * 表单验证
+   * @param {FormControl} control
+   * @returns {{[p: string]: boolean}}
+   */
   confirmationValidator = (control: FormControl): { [s: string]: boolean } => {
     if (!control.value) {
       return {required: true};
     } else if (control.value !== this.validateForm.controls['password'].value) {
       return {confirm: true, error: true};
     }
-  }
-
-  getCaptcha(e: MouseEvent) {
-    e.preventDefault();
-  }
-
-  findById() {
-    /*this.userService.queryById(this._id)
-      .then((result: any) => {
-        this.formData = result.data;
-      }, (err) => {
-        this.message.warning(err.msg);
-      });*/
   }
 
   ngOnInit() {
@@ -136,7 +111,10 @@ export class UserformComponent implements OnInit {
       email: [null, [Validators.required, Validators.email]],
       address: [null, [Validators.required]]
     });
-    this.getRole();
+  }
+
+  _cancel() {
+    this.subject.destroy('onCancel');
   }
 
   getFormControl(name) {
