@@ -66,10 +66,21 @@ export class UserformComponent implements OnInit {
     this._id = value;
   }
 
-
   constructor(private message: NzMessageService, private userService: UserService, private fb: FormBuilder, private subject: NzModalSubject) {
     this.subject.on('onDestory', () => {
       console.log('destroy');
+    });
+  }
+
+  ngOnInit() {
+    this.validateForm = this.fb.group({
+      name: [null, [Validators.required]],
+      nickName: [null, [Validators.required]],
+      gender: [null, [Validators.required]],
+      age: [null, [Validators.required]],
+      phone: [null, [Validators.required, Validators.pattern(/^1[34578]\d{9}$/)]],
+      email: [null, [Validators.required, Validators.email]],
+      address: [null, [Validators.required]]
     });
   }
 
@@ -84,33 +95,8 @@ export class UserformComponent implements OnInit {
     // data submit
 
     //  destroy方法可以传入onOk或者onCancel。默认是onCancel
-    //数据提交成功调用一下代码
-    //this.subject.destroy('onOk');
-  }
-
-  /**
-   * 表单验证
-   * @param {FormControl} control
-   * @returns {{[p: string]: boolean}}
-   */
-  confirmationValidator = (control: FormControl): { [s: string]: boolean } => {
-    if (!control.value) {
-      return {required: true};
-    } else if (control.value !== this.validateForm.controls['password'].value) {
-      return {confirm: true, error: true};
-    }
-  }
-
-  ngOnInit() {
-    this.validateForm = this.fb.group({
-      name: [null, [Validators.required]],
-      nickName: [null, [Validators.required]],
-      gender: [null, [Validators.required]],
-      age: [null, [Validators.required]],
-      phone: [null, [Validators.required, Validators.pattern(/^1[34578]\d{9}$/)]],
-      email: [null, [Validators.required, Validators.email]],
-      address: [null, [Validators.required]]
-    });
+    // 数据提交成功调用一下代码
+    // this.subject.destroy('onOk');
   }
 
   _cancel() {
