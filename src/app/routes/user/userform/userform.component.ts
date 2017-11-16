@@ -17,41 +17,43 @@ import {UserService} from '../user.service';
 export class UserformComponent implements OnInit {
   validateForm: FormGroup;
   _id: string;
-  roleData: Array<Object>;
-/*  widgets = [
-    /!*   {
-         controlType: 'select',
-         key: 'roleId',
-         label: '角色',
-         options: [
-           {label: 'solid', value: 'Solid'},
-           {label: 'great', value: 'Great'},
-           {label: 'good', value: 'Good'},
-           {label: 'unproven', value: 'Unproven'}
-         ],
-         required: true,
-         order: 3
-       },*!/
-    {
-      controlType: 'input',
-      key: 'adminName',
-      label: '用户名',
-      value: '',
-      required: true,
-      order: 1
-    },
-    {
-      controlType: 'input',
-      key: 'adminPassword',
-      label: '密码',
-      required: true,
-      order: 2
-    }
-  ];*/
+  _options = [{
+    value: 'zhejiang',
+    label: 'Zhejiang',
+    children: [{
+      value: 'hangzhou',
+      label: 'Hangzhou',
+      children: [{
+        value: 'xihu',
+        label: 'West Lake',
+        isLeaf: true
+      }],
+    }, {
+      value: 'ningbo',
+      label: 'Ningbo',
+      isLeaf: true
+    }],
+  }, {
+    value: 'jiangsu',
+    label: 'Jiangsu',
+    children: [{
+      value: 'nanjing',
+      label: 'Nanjing',
+      children: [{
+        value: 'zhonghuamen',
+        label: 'Zhong Hua Men',
+        isLeaf: true
+      }],
+    }],
+  }]
   formData = {
-    adminName: '',
-    adminPassword: '',
-    roleId: ''
+    name: '',
+    nickName: '',
+    gender: '',
+    age: '',
+    phone: '',
+    email: '',
+    address: ''
   };
 
   @Input()
@@ -126,9 +128,13 @@ export class UserformComponent implements OnInit {
 
   ngOnInit() {
     this.validateForm = this.fb.group({
-      adminName: [null, [Validators.required]],
-      adminPassword: [null, [Validators.required]],
-      roleId: [null, [Validators.required]]
+      name: [null, [Validators.required]],
+      nickName: [null, [Validators.required]],
+      gender: [null, [Validators.required]],
+      age: [null, [Validators.required]],
+      phone: [null, [Validators.required, Validators.pattern(/^1[34578]\d{9}$/)]],
+      email: [null, [Validators.required, Validators.email]],
+      address: [null, [Validators.required]]
     });
     this.getRole();
   }

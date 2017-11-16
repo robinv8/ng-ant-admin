@@ -3,66 +3,122 @@
   <form nz-form [formGroup]="validateForm" [nzType]="'horizontal'">
     <div nz-form-item nz-row>
       <div nz-form-label nz-col [nzSm]="6">
-        <label for="username" nz-form-item-required>用户名</label>
+        <label for="name" nz-form-item-required>name</label>
       </div>
-      <div nz-form-control nz-col [nzSm]="14" [nzValidateStatus]="getFormControl('adminName')">
-        <nz-input [nzSize]="'large'" formControlName="adminName" [nzId]="'adminName'"
-                  [ngModel]="formData.adminName"></nz-input>
+      <div nz-form-control nz-col [nzSm]="14" [nzValidateStatus]="getFormControl('name')" nzHasFeedback>
+        <nz-input [nzSize]="'large'" formControlName="name" [nzId]="'name'"
+                  [ngModel]="formData.name"></nz-input>
         <div nz-form-explain
-             *ngIf="getFormControl('adminName').dirty&&getFormControl('adminName').hasError('adminName')">
+             *ngIf="getFormControl('name').dirty&&getFormControl('name').hasError('required')">
+          name is required!
+        </div>
+      </div>
+    </div>
+    <div nz-form-item nz-row>
+      <div nz-form-label nz-col [nzSm]="6">
+        <label for="nickName" nz-form-item-required>NickName</label>
+      </div>
+      <div nz-form-control nz-col [nzSm]="14"
+           [nzValidateStatus]="getFormControl('nickName')" nzHasFeedback>
+        <nz-input [nzSize]="'large'" formControlName="nickName" [nzId]="'nickName'"
+                  [ngModel]="formData.nickName"></nz-input>
+        <div nz-form-explain
+             *ngIf="getFormControl('nickName').dirty&&getFormControl('nickName').hasError('required')">Please
+          nickName is required!
+        </div>
+      </div>
+    </div>
+    <div nz-form-item nz-row>
+      <div nz-form-label nz-col [nzSm]="6">
+        <label for="Gender" nz-form-item-required>Gender</label>
+      </div>
+      <div nz-form-control nz-col [nzSm]="14" [nzValidateStatus]="getFormControl('gender')" nzHasFeedback>
+        <nz-radio-group [(ngModel)]="formData.gender" nzAllowClear formControlName="gender">
+          <label nz-radio [nzValue]="0">
+            <span>Male</span>
+          </label>
+          <label nz-radio [nzValue]="1">
+            <span>Female</span>
+          </label>
+        </nz-radio-group>
+        <div nz-form-explain
+             *ngIf="getFormControl('gender').dirty&&getFormControl('gender').hasError('required')">
+          isMale is required！
+        </div>
+      </div>
+    </div>
+    <div nz-form-item nz-row>
+      <div nz-form-label nz-col [nzSm]="6">
+        <label for="age" nz-form-item-required>Age</label>
+      </div>
+      <div nz-form-control nz-col [nzSm]="14" [nzValidateStatus]="getFormControl('age')" nzHasFeedback>
+        <nz-input-number [(ngModel)]="formData.age" formControlName="age" [nzMin]="1" [nzMax]="10" [nzStep]="1"></nz-input-number>
+        <div nz-form-explain
+             *ngIf="getFormControl('age').dirty&&getFormControl('age').hasError('required')">
+          age is required！
+        </div>
+      </div>
+    </div>
+    <div nz-form-item nz-row>
+      <div nz-form-label nz-col [nzSm]="6">
+        <label for="phone" nz-form-item-required>phone</label>
+      </div>
+      <div nz-form-control nz-col [nzSm]="14" [nzValidateStatus]="getFormControl('phone')" nzHasFeedback>
+        <nz-input [nzSize]="'large'" formControlName="phone" [nzId]="'phone'"
+                  [ngModel]="formData.phone"></nz-input>
+        <div nz-form-explain
+             *ngIf="getFormControl('phone').dirty&&getFormControl('phone').hasError('required')">
+          The
+          input is not valid E-mail!
+        </div>
+        <div nz-form-explain  *ngIf="getFormControl('phone').dirty&&getFormControl('phone').hasError('email')">
+          The input is not valid phone!
+        </div>
+      </div>
+    </div>
+    <div nz-form-item nz-row>
+      <div nz-form-label nz-col [nzSm]="6">
+        <label for="email" nz-form-item-required>email</label>
+      </div>
+      <div nz-form-control nz-col [nzSm]="14" [nzValidateStatus]="getFormControl('email')" nzHasFeedback>
+        <nz-input [nzSize]="'large'" formControlName="email" [nzId]="'email'"
+                  [ngModel]="formData.email"></nz-input>
+        <div nz-form-explain
+             *ngIf="getFormControl('email').dirty&&getFormControl('email').hasError('required')">
+          nickName is required!
+        </div>
+        <div nz-form-explain  *ngIf="getFormControl('email').dirty&&getFormControl('email').hasError('email')">
+          The input is not valid E-mail!
+        </div>
+      </div>
+    </div>
+    <div nz-form-item nz-row>
+      <div nz-form-label nz-col [nzSm]="6">
+        <label for="address" nz-form-item-required>address</label>
+      </div>
+      <div nz-form-control nz-col [nzSm]="14" [nzValidateStatus]="getFormControl('address')" nzHasFeedback>
+        <nz-cascader
+          [class.class123]="true"
+          [nzOptions]="_options"
+          [(ngModel)]="address"
+          formControlName="address">
+        </nz-cascader>
+        <div nz-form-explain
+             *ngIf="getFormControl('address').dirty&&getFormControl('address').hasError('required')">
           The
           input is not valid E-mail!
         </div>
       </div>
     </div>
-    <div nz-form-item nz-row>
-      <div nz-form-label nz-col [nzSm]="6">
-        <label for="password" nz-form-item-required>密码</label>
-      </div>
-      <div nz-form-control nz-col [nzSm]="14"
-           [nzValidateStatus]="getFormControl('adminPassword')">
-        <nz-input [nzSize]="'large'" formControlName="adminPassword" [nzId]="'adminPassword'"
-                  [ngModel]="formData.adminPassword"></nz-input>
-        <div nz-form-explain
-             *ngIf="getFormControl('adminPassword').dirty&&getFormControl('adminPassword').hasError('required')">Please
-          input
-          your adminPassword!
-        </div>
-      </div>
-    </div>
-    <div nz-form-item nz-row>
-      <div nz-form-label nz-col [nzSm]="6">
-        <label for="roleId" nz-form-item-required>角色名称</label>
-      </div>
-      <div nz-form-control nz-col [nzSm]="14"
-           [nzValidateStatus]="getFormControl('roleId')">
-        <nz-select
-          nzAllowClear
-          [nzPlaceHolder]="'选择角色'"
-          [(ngModel)]="formData.roleId"
-          formControlName="roleId"
-          [nzShowSearch]="true">
-          <nz-option
-            *ngFor="let option of roleData"
-            [nzLabel]="option.roleName"
-            [nzValue]="option.roleId"
-            [nzDisabled]="option.disabled">
-          </nz-option>
-        </nz-select>
-        <div nz-form-explain
-             *ngIf="getFormControl('roleId').dirty&&getFormControl('roleId').hasError('required')">角色名称必选!
-        </div>
-      </div>
-    </div>
-    <div nz-form-item nz-row style="margin-bottom:8px;">
-      <div class="customize-footer">
-        <button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="_submitForm()">
-          确定
-        </button>
-        <button nz-button [nzType]="'default'" [nzSize]="'large'" (click)="_handleCancel($event)">
-          返 回
-        </button>
-      </div>
-    </div>
+    <!-- <div nz-form-item nz-row style="margin-bottom:8px;">
+       <div class="customize-footer">
+         <button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="_submitForm()">
+           确定
+         </button>
+         <button nz-button [nzType]="'default'" [nzSize]="'large'" (click)="_handleCancel($event)">
+           返 回
+         </button>
+       </div>
+     </div>-->
   </form>
 </div>

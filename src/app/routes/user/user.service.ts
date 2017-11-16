@@ -65,6 +65,12 @@ export class UserService extends BaseService {
     ];
   }
 
+  /**
+   * 获取列表数据
+   * @param pageIndex
+   * @param pageSize
+   * @returns {Promise<any>}
+   */
   getUserList(pageIndex, pageSize) {
     return new Promise((resolve, reject) => {
       this.http.get('http://www.easy-mock.com/mock/5a011b579d3ceb4a354379db/user')
@@ -72,5 +78,37 @@ export class UserService extends BaseService {
           resolve(result);
         });
     });
+  }
+
+  getCityData() {
+    return [{
+      value: 'zhejiang',
+      label: 'Zhejiang',
+      children: [{
+        value: 'hangzhou',
+        label: 'Hangzhou',
+        children: [{
+          value: 'xihu',
+          label: 'West Lake',
+          isLeaf: true
+        }],
+      }, {
+        value: 'ningbo',
+        label: 'Ningbo',
+        isLeaf: true
+      }],
+    }, {
+      value: 'jiangsu',
+      label: 'Jiangsu',
+      children: [{
+        value: 'nanjing',
+        label: 'Nanjing',
+        children: [{
+          value: 'zhonghuamen',
+          label: 'Zhong Hua Men',
+          isLeaf: true
+        }],
+      }],
+    }];
   }
 }
