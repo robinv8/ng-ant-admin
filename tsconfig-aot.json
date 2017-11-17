@@ -18,22 +18,22 @@
     "baseUrl": "src/",
     "paths": {
       "@components": [
-        "app/components"
+        "temp_app/components"
       ],
       "@components/*": [
-        "app/components/*"
+        "temp_app/components/*"
       ],
       "@core": [
-        "app/core/"
+        "temp_app/core/"
       ],
       "@core/*": [
-        "app/core/*"
+        "temp_app/core/*"
       ]
     }
   },
   "files": [
     "src/temp_app/app.module.ts",
-    "src/main_aot.ts"
+    "src/main-aot.ts"
   ],
   "angularCompilerOptions": {
     "strictMetadataEmit": true,
