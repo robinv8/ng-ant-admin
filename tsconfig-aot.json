@@ -1,7 +1,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
@@ -33,13 +32,11 @@
     }
   },
   "files": [
-    "src/app/app.module.ts",
-    "src/main.ts"
+    "src/temp_app/app.module.ts",
+    "src/main_aot.ts"
   ],
   "angularCompilerOptions": {
-    "annotateForClosureCompiler": true,
     "strictMetadataEmit": true,
-    "skipTemplateCodegen": true,
-    "genDir": "aot"
+    "genDir": "dist"
   }
 }
