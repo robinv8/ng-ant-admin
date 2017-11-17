@@ -46,7 +46,6 @@ function writeFile(fileArray) {
         console.log('file merge success!');
       })
     });
-
 }
 
 /**
@@ -63,12 +62,11 @@ function processScss(path) {
       less.render(data, {
         filename: pathUtil.resolve(path),
       }, (err, result) => {
-        fs.writeFile(path, result.css, function (err) {
-          if (err) console.error(err);
-          console.log('file merge success!');
-        })
         if (!err) {
-          resolve(result.css.toString())
+          fs.writeFile(path, result.css, function (err) {
+            if (err) console.error(err);
+            resolve(result.css.toString())
+          })
         } else {
           reject(err);
         }
