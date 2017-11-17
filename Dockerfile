@@ -1,6 +1,6 @@
 # We label our stage as 'builder'
 FROM node:8-alpine as builder
-
+RUN npm config set registry http://registry.npm.taobao.org/
 WORKDIR /app
 RUN npm install -g @angular/cli
 
