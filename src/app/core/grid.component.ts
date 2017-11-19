@@ -24,7 +24,7 @@ export class GridComponent {
     return this._current;
   }
 
-  setCurrent(value: number) {
+  set current(value: number) {
     this._current = value;
   }
 

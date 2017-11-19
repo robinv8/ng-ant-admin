@@ -5,7 +5,7 @@
     </nz-breadcrumb-item>
     <ng-container *ngFor="let breadcrumb of breadcrumbs;let i=index;">
       <nz-breadcrumb-item *ngIf="breadcrumb.url!=='/dashboard'">
-        <ng-template *ngIf="index!==breadcrumbs.length-1;else elseBlock">
+        <ng-template *ngIf="i!==breadcrumbs.length-1;else elseBlock">
           <a routerLink="{{breadcrumb.url}}" routerLinkActive="active"><i class="anticon anticon-{{breadcrumb.icon}}"></i><span>{{ breadcrumb.label }}</span></a>
         </ng-template>
         <span #elseBlock><i class="anticon anticon-{{breadcrumb.icon}}"></i><span>{{ breadcrumb.label }}</span></span>

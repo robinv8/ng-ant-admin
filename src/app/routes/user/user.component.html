@@ -19,12 +19,12 @@
       <div class="item">
         <div nz-col [nzSpan]="12">
           <nz-datepicker (ngModelChange)="searchParmas.startDate=$event;_startValueChange()" [ngModel]="searchParmas.startDate"
-                         [nzDisabledDate]="_disabledStartDate" [nzShowTime]="true" [nzFormat]="'YYYY-MM-DD HH:mm:ss'"
+                         [nzShowTime]="true" [nzFormat]="'YYYY-MM-DD HH:mm:ss'"
                          [nzPlaceHolder]="'Start date'"></nz-datepicker>
         </div>
         <div nz-col [nzSpan]="12">
           <nz-datepicker (ngModelChange)="searchParmas.endDate=$event;_endValueChange()" [ngModel]="searchParmas.endDate"
-                         [nzDisabledDate]="_disabledEndDate" [nzShowTime]="_endTime" [nzFormat]="'YYYY-MM-DD HH:mm:ss'"
+                         [nzShowTime]="true" [nzFormat]="'YYYY-MM-DD HH:mm:ss'"
                          [nzPlaceHolder]="'End date'"></nz-datepicker>
         </div>
       </div>
@@ -34,15 +34,15 @@
        style="padding-left: 12px; padding-right: 12px; margin-bottom: 16px;">
     <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
       <div>
-        <button nz-button [nzType]="'primary'" [ngStyle]="_margin" (click)="getData()">
+        <button nz-button [nzType]="'primary'" (click)="getData()">
           <span>Search</span>
         </button>
-        <button nz-button [nzType]="'default'" [ngStyle]="_margin" (click)="clearSearchParams()">
+        <button nz-button [nzType]="'default'" (click)="clearSearchParams()">
           <span>Reset</span>
         </button>
       </div>
       <div>
-        <button nz-button [nzType]="'default'" [ngStyle]="_margin" ngStyle="_create" (click)="createOrUpdate()">
+        <button nz-button [nzType]="'default'" ngStyle="_create" (click)="createOrUpdate()">
           <span>Create</span>
         </button>
       </div>

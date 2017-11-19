@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {SessionStorageService} from '../../core/storage/storage.module';
+import {SessionStorageService} from '@core/storage/storage.module';
 
 @Injectable()
 export class LoginService {
@@ -15,7 +15,7 @@ export class LoginService {
         } else {
           reject(false);
         }
-      }, 3000);
+      }, 2000);
     });
   }
 }

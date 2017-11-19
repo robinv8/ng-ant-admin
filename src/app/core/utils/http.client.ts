@@ -41,12 +41,10 @@ export class NHttpClinet {
   }
 
   private begin() {
-    console.time('http');
     this._loading = true;
   }
 
   private end() {
-    console.timeEnd();
     this._loading = false;
   }
 
