@@ -7,6 +7,8 @@ RUN npm install -g @angular/cli
 COPY ./package.json /app/
 RUN npm install
 
+RUN npm install --save ng-zorro-antd@0.6.0-rc.3
+
 COPY . /app/
 
 RUN ng build --prod
