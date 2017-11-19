@@ -11,7 +11,7 @@ RUN npm install --save ng-zorro-antd@0.6.0-rc.3
 
 COPY . /app/
 
-RUN ng build --prod
+RUN ng build
 
 ### STAGE 2: Setup ###
 
