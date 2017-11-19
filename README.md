@@ -1,27 +1,28 @@
-# NgAntAdmin
+# ng-ant-dmin
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.7.
+[ng-ant-dmin](https://github.com/robinv8/ng-ant-admin) A front-end framework for background management system based on [ng-zorro-antd](https://github.com/NG-ZORRO/ng-zorro-antd)。
 
-## Development server
+[DEMO](http://ng-ant-admin.rnode.me)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Quick start
+Make sure you have Node version >= 6.9.0 and NPM >= 3 or higher.
 
-## Code scaffolding
+```
+# clone ng-ant-admin repo
+# --depth 1 removes all but one .git commit history
+git clone --depth 1 https://github.com/robinv8/ng-ant-admin.git
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# change directory
+cd ng-ant-admin
 
-## Build
+# install npm package
+npm install
+# in china please use cnpm （https://github.com/cnpm/cnpm）
+# cnpm install
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+# start the serve
+npm start
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+# use HMR
+npm run serve:hmr
+```
