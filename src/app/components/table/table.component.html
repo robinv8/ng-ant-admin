@@ -13,7 +13,9 @@
              (ngModelChange)="_checkAll($event)">
       </label>
     </th>
-    <th nz-th *ngFor="let fieldObj of gridView.tableFields"><span>{{fieldObj.text}}</span></th>
+    <ng-template ngFor let-fieldObj [ngForOf]="gridView.tableFields" let-i="index">
+      <th nz-th *ngIf="fieldObj.hidden!==false"><span>{{fieldObj.text}}</span></th>
+    </ng-template>
   </tr>
   </thead>
   <tbody nz-tbody>
@@ -23,38 +25,38 @@
       </label>
     </td>
     <ng-template ngFor let-fieldObj [ngForOf]="gridView.tableFields" let-i="index">
-      <td nz-td *ngIf="!fieldObj.type||fieldObj.type===1">
-        {{data[fieldObj.field]}}
-      </td>
-      <td nz-td *ngIf="fieldObj.type&&fieldObj.type===3">
-        <img src="{{data[fieldObj.field]}}" alt="">
-      </td>
-      <td nz-td *ngIf="fieldObj.type&&fieldObj.type===4">
-        {{data[fieldObj.field]}}
-      </td>
-      <td nz-td *ngIf="fieldObj.type&&fieldObj.type===2">
-        <nz-dropdown>
-          <button nz-dropdown nz-button style="border: none">
-            <i class="anticon anticon-bars" style="margin-right: 2px;"></i>
-            <i class="anticon anticon-down"></i>
-          </button>
-          <ul nz-menu>
-            <ng-template ngFor let-handle [ngForOf]="gridView.operations" let-i="index">
-              <li nz-menu-item>
-                <a href="javascript:;" *ngIf="!handle.isConfirm;else elseBlock"
-                   (click)="handle.event(data[handle.key]||data.id)">{{handle.text}}</a>
-                <ng-template #elseBlock>
-                  <nz-popconfirm [nzTitle]="handle.title"
-                                 (nzOnConfirm)="handle.event.ok(data[handle.key])"
-                                 (nzOnCancel)="handle.event.cancel()">
-                    <a href="javascript:;" nz-popconfirm>{{handle.text}}</a>
-                  </nz-popconfirm>
-                </ng-template>
-              </li>
-            </ng-template>
-          </ul>
-        </nz-dropdown>
-      </td>
+        <td nz-td *ngIf="(!fieldObj.type||fieldObj.type===1)&&fieldObj.hidden!==false">
+          {{data[fieldObj.field]}}
+        </td>
+        <td nz-td *ngIf="(fieldObj.type&&fieldObj.type===3)&&fieldObj.hidden!==false">
+          <img src="{{data[fieldObj.field]}}" alt="">
+        </td>
+        <td nz-td *ngIf="(fieldObj.type&&fieldObj.type===4)&&fieldObj.hidden!==false">
+          {{data[fieldObj.field]}}
+        </td>
+        <td nz-td *ngIf="(fieldObj.type&&fieldObj.type===2)&&fieldObj.hidden!==false">
+          <nz-dropdown>
+            <button nz-dropdown nz-button style="border: none">
+              <i class="anticon anticon-bars" style="margin-right: 2px;"></i>
+              <i class="anticon anticon-down"></i>
+            </button>
+            <ul nz-menu>
+              <ng-template ngFor let-handle [ngForOf]="gridView.operations" let-i="index">
+                <li nz-menu-item>
+                  <a href="javascript:;" *ngIf="!handle.isConfirm;else elseBlock"
+                     (click)="handle.event(data[handle.key]||data.id)">{{handle.text}}</a>
+                  <ng-template #elseBlock>
+                    <nz-popconfirm [nzTitle]="handle.title"
+                                   (nzOnConfirm)="handle.event.ok(data[handle.key])"
+                                   (nzOnCancel)="handle.event.cancel()">
+                      <a href="javascript:;" nz-popconfirm>{{handle.text}}</a>
+                    </nz-popconfirm>
+                  </ng-template>
+                </li>
+              </ng-template>
+            </ul>
+          </nz-dropdown>
+        </td>
     </ng-template>
   </tr>
   </tbody>

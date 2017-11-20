@@ -23,7 +23,7 @@ export class UserformComponent implements OnInit {
    * @type {{name: string; nickName: string; gender: string; age: string; phone: string; email: string; address: string}}
    */
   formData = {
-    name: '2112',
+    name: '',
     nickName: '',
     gender: '',
     age: '',
