@@ -3,9 +3,9 @@
     <nz-breadcrumb-item>
       <a routerLink="/dashboard"><i class="anticon anticon-home"></i><span>Dashboard</span></a>
     </nz-breadcrumb-item>
-    <ng-container *ngFor="let breadcrumb of breadcrumbs;let i=index;">
+    <ng-container *ngFor="let breadcrumb of breadcrumbs;">
       <nz-breadcrumb-item *ngIf="breadcrumb.url!=='/dashboard'">
-        <ng-template *ngIf="i!==breadcrumbs.length-1;else elseBlock">
+        <ng-template *ngIf="index!==breadcrumbs.length-1;else elseBlock">
           <a routerLink="{{breadcrumb.url}}" routerLinkActive="active"><i class="anticon anticon-{{breadcrumb.icon}}"></i><span>{{ breadcrumb.label }}</span></a>
         </ng-template>
         <span #elseBlock><i class="anticon anticon-{{breadcrumb.icon}}"></i><span>{{ breadcrumb.label }}</span></span>
