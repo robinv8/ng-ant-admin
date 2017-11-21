@@ -9,7 +9,7 @@ RUN npm install
 
 COPY . /app/
 
-RUN ng build
+RUN ng build --prod --build-optimizer
 
 ### STAGE 2: Setup ###
 
