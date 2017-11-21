@@ -5,7 +5,7 @@ import {MenuService} from '@core/services/menu.service';
 @Component({
   selector: 'app-sider',
   templateUrl: 'sider.component.html',
-  styleUrls: ['./sider.component.less'],
+  styleUrls: ['./sider.component.less']
 })
 
 export class SiderComponent {

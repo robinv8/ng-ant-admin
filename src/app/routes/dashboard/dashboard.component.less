@@ -8,51 +8,47 @@
 .col3{
   color: rgb(216, 151, 235);
 }
-.layout{
-  .main{
-    .ant-row{
-      position: relative;
-      margin-left: 0;
-      margin-right: 0;
-      height: auto;
-      zoom: 1;
-      display: block;
+:host /deep/ .ant-row{
+  position: relative;
+  margin-left: 0;
+  margin-right: 0;
+  height: auto;
+  zoom: 1;
+  display: block;
 
-      .numberCard {
-        padding: 32px;
-        margin-bottom: 24px;
-        cursor: pointer;
-        background: #fff;
+  .numberCard {
+    padding: 32px;
+    margin-bottom: 24px;
+    cursor: pointer;
+    background: #fff;
 
-        .iconWarp {
-          font-size: 54px;
-          float: left;
-        }
+    .iconWarp {
+      font-size: 54px;
+      float: left;
+    }
 
-        .content {
-          width: 100%;
-          padding-left: 78px;
-          min-height: inherit;
+    .content {
+      width: 100%;
+      padding-left: 78px;
+      min-height: inherit;
 
-          .title {
-            line-height: 16px;
-            font-size: 16px;
-            margin-bottom: 8px;
-            height: 16px;
-            .text-overflow();
-          }
-
-          .number {
-            line-height: 32px;
-            font-size: 24px;
-            height: 32px;
-            .text-overflow();
-          }
-        }
-        &:hover{
-          box-shadow: 0 0 100px rgba(0,0,0,.08);
-        }
+      .title {
+        line-height: 16px;
+        font-size: 16px;
+        margin-bottom: 8px;
+        height: 16px;
+        .text-overflow();
       }
+
+      .number {
+        line-height: 32px;
+        font-size: 24px;
+        height: 32px;
+        .text-overflow();
+      }
+    }
+    &:hover{
+      box-shadow: 0 0 100px rgba(0,0,0,.08);
     }
   }
 }
