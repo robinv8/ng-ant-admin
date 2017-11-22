@@ -18,71 +18,49 @@ export class UserService extends BaseService {
     return [
       {
         field: 'id',
-        text: 'Id',
-        hidden: false
+        text: 'Id'
       },
       {
         field: 'avatar',
-        text:
-          'Avatar',
-        type:
-          3
-      }
-      ,
+        text: 'Avatar',
+        type: 3
+      },
       {
         field: 'name',
-        text:
-          'Name'
-      }
-      ,
+        text: 'Name'
+      },
       {
         field: 'nickName',
-        text:
-          'NickName'
-      }
-      ,
+        text: 'NickName'
+      },
       {
         field: 'phone',
-        text:
-          'Phone',
-      }
-      ,
+        text: 'Phone'
+      },
       {
         field: 'age',
-        text:
-          'Age',
-      }
-      ,
+        text: 'Age'
+      },
       {
         field: 'address',
-        text:
-          'Address',
-      }
-      ,
+        text: 'Address'
+      },
       {
         field: 'isMale',
-        text:
-          'IsMale',
-        type:
-          4
-      }
-      ,
+        text: 'IsMale',
+        type: 4
+      },
       {
         field: 'email',
-        text:
-          'Email',
-      }
-      ,
+        text: 'Email'
+      },
       {
         field: 'createTime',
-        text:
-          'CreateTime',
-      }
-      ,
+        text: 'CreateTime'
+      },
       {
         text: '操作',
-        type:
-          2
+        type: 2
       }
     ]
       ;
