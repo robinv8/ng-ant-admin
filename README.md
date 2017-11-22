@@ -1,28 +1,23 @@
 # ng-ant-dmin
 
-[ng-ant-dmin](https://github.com/robinv8/ng-ant-admin) A front-end framework for background management system based on [ng-zorro-antd](https://github.com/NG-ZORRO/ng-zorro-antd)。
+[ng-ant-dmin](https://github.com/robinv8/ng-ant-admin)是基于[ng-zorro-antd](https://github.com/NG-ZORRO/ng-zorro-antd)的后台管理系统前端框架。
 
-[DEMO](http://ng-ant-admin.rnode.me)
+[演示](http://ng-ant-admin.rnode.me)
 
-## Quick start
-Make sure you have Node version >= 6.9.0 and NPM >= 3 or higher.
+## 快速开始
+确保您的Node版本>= 6.9.0，NPM版本 >= 3。
 
 ```
-# clone ng-ant-admin repo
-# --depth 1 removes all but one .git commit history
 git clone --depth 1 https://github.com/robinv8/ng-ant-admin.git
 
-# change directory
 cd ng-ant-admin
 
-# install npm package
 npm install
-# in china please use cnpm （https://github.com/cnpm/cnpm）
 # cnpm install
 
-# start the serve
 npm start
-
-# use HMR
-npm run serve:hmr
 ```
+##项目截图
+
+![img](http://cdn.rnode.me/images/20171122/img1.png)
+
