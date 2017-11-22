@@ -5,53 +5,32 @@ import {UserformComponent} from './userform/userform.component';
 
 import {GridComponent} from '@core/grid.component';
 
-const other_options = [{
-  value: 'fujian',
-  label: 'Fujian',
-  children: [{
-    value: 'xiamen',
-    label: 'Xiamen',
-    children: [{
-      value: 'Kulangsu',
-      label: 'Kulangsu',
-      isLeaf: true
-    }],
-  }],
-}, {
-  value: 'guangxi',
-  label: 'Guangxi',
-  children: [{
-    value: 'guilin',
-    label: 'Guilin',
-    children: [{
-      value: 'Lijiang',
-      label: 'Li Jiang River',
-      isLeaf: true
-    }],
-  }],
-}];
-
 @Component({
   selector: 'app-user',
   templateUrl: 'user.component.html',
   styleUrls: ['./user.component.less'],
   providers: [UserService]
 })
-
-
 export class UserComponent extends GridComponent implements OnInit {
 
+  /**
+   * 列表搜索数据模型
+   */
   searchParmas = {
-    search_1: '',
-    search_2: '',
-    startDate: '',
-    endDate: ''
+    params: {
+      options: []
+    },
+    value: {
+      search_1: '',
+      search_2: '',
+      startDate: '',
+      endDate: '',
+    }
   };
-  options = [];
 
   constructor(private userService: UserService, private message: NzMessageService, private modalService: NzModalService) {
     super(userService);
-    this.options = this.userService.getCityData();
+    this.searchParmas.params.options = this.userService.getCityData();
     /**
      * 列表操作按钮
      */
@@ -89,8 +68,6 @@ export class UserComponent extends GridComponent implements OnInit {
         this.setTableData(data);
         this.setTotal(total);
         this.setLoading(false);
-      }, (err) => {
-
       });
   }
 
@@ -109,7 +86,6 @@ export class UserComponent extends GridComponent implements OnInit {
         self.getData();
       },
       onCancel() {
-        console.log('Click cancel');
       },
       componentParams: {
         id: id
@@ -138,19 +114,22 @@ export class UserComponent extends GridComponent implements OnInit {
    * 清除搜索框数据
    */
   clearSearchParams() {
-    for (const key in this.searchParmas) {
-      this.searchParmas[key] = '';
+    for (const key in this.searchParmas.value) {
+      this.searchParmas.value[key] = '';
     }
   }
 
   _startValueChange = () => {
-    if (this.searchParmas.startDate > this.searchParmas.endDate) {
-      this.searchParmas.endDate = null;
+    const {startDate, endDate} = this.searchParmas.value;
+    if (startDate > endDate) {
+      this.searchParmas.value.endDate = null;
     }
   }
+
   _endValueChange = () => {
-    if (this.searchParmas.startDate > this.searchParmas.endDate) {
-      this.searchParmas.startDate = null;
+    const {startDate, endDate} = this.searchParmas.value;
+    if (startDate > endDate) {
+      this.searchParmas.value.startDate = null;
     }
   }
 }

@@ -1,12 +1,12 @@
 <div nz-row style="margin-left: -12px;margin-right: -12px;">
   <div nz-col [nzXl]="{ span: 4}" [nzMd]="{ span: 6}"
        style="padding-left: 12px; padding-right: 12px; margin-bottom: 16px;">
-    <nz-input [nzType]="'search'" [nzPlaceHolder]="'input search text'" [(ngModel)]="searchParmas.search_1"
+    <nz-input [nzType]="'search'" [nzPlaceHolder]="'input search text'" [(ngModel)]="searchParmas.value.search_1"
               class="ant_search"></nz-input>
   </div>
   <div nz-col [nzXl]="{ span: 4}" [nzMd]="{ span: 6}"
        style="padding-left: 12px; padding-right: 12px; margin-bottom: 16px;">
-    <nz-cascader [class.class123]="true" [nzOptions]="options" [(ngModel)]="searchParmas.search_2">
+    <nz-cascader [class.class123]="true" [nzOptions]="searchParmas.params.options" [(ngModel)]="searchParmas.value.search_2">
     </nz-cascader>
   </div>
 
@@ -18,7 +18,7 @@
       </div>
       <div class="item">
         <div nz-col [nzSpan]="12">
-          <nz-datepicker (ngModelChange)="searchParmas.startDate=$event;_startValueChange()" [ngModel]="searchParmas.startDate"
+          <nz-datepicker (ngModelChange)="searchParmas.value.startDate=$event;_startValueChange()" [ngModel]="searchParmas.value.startDate"
                          [nzShowTime]="true" [nzFormat]="'YYYY-MM-DD HH:mm:ss'"
                          [nzPlaceHolder]="'Start date'"></nz-datepicker>
         </div>

@@ -13,7 +13,7 @@ export interface TableFiled {
   field?: string;
   text: string;
   type?: number;
-  hidden?: boolean
+  hidden?: boolean;
 }
 
 export interface Operation {
