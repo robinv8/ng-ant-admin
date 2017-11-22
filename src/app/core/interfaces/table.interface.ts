@@ -23,3 +23,8 @@ export interface Operation {
   title?: string;
   event: any;
 }
+
+export interface SearchParams {
+  params: { [key: string]: any };
+  values: { [key: string]: any };
+}

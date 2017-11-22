@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NzMessageService, NzModalService} from 'ng-zorro-antd';
 import {UserService} from './user.service';
 import {UserformComponent} from './userform/userform.component';
-
+import {SearchParams} from '@core/interfaces/table.interface';
 import {GridComponent} from '@core/grid.component';
 
 @Component({
@@ -16,15 +16,15 @@ export class UserComponent extends GridComponent implements OnInit {
   /**
    * 列表搜索数据模型
    */
-  searchParmas = {
+  searchParmas: SearchParams = {
     params: {
       options: []
     },
-    value: {
+    values: {
       search_1: '',
       search_2: '',
       startDate: '',
-      endDate: '',
+      endDate: ''
     }
   };
 
@@ -114,22 +114,22 @@ export class UserComponent extends GridComponent implements OnInit {
    * 清除搜索框数据
    */
   clearSearchParams() {
-    for (const key in this.searchParmas.value) {
-      this.searchParmas.value[key] = '';
+    for (const key in this.searchParmas.values) {
+      this.searchParmas.values[key] = '';
     }
   }
 
   _startValueChange = () => {
-    const {startDate, endDate} = this.searchParmas.value;
+    const {startDate, endDate} = this.searchParmas.values;
     if (startDate > endDate) {
-      this.searchParmas.value.endDate = null;
+      this.searchParmas.values.endDate = null;
     }
   }
 
   _endValueChange = () => {
-    const {startDate, endDate} = this.searchParmas.value;
+    const {startDate, endDate} = this.searchParmas.values;
     if (startDate > endDate) {
-      this.searchParmas.value.startDate = null;
+      this.searchParmas.values.startDate = null;
     }
   }
 }

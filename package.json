@@ -5,7 +5,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod –no-extract-license --build-optimizer",
+    "build": "ng build --prod --build-optimizer",
+    "build:win": "ng build --prod –no-extract-license --build-optimizer",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
