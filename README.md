@@ -17,7 +17,7 @@ npm install
 
 npm start
 ```
-##项目截图
+## 项目截图
 
 ![img](http://cdn.rnode.me/images/20171122/img1.png)
 
