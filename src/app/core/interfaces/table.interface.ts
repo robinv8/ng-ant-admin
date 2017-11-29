@@ -25,6 +25,6 @@ export interface Operation {
 }
 
 export interface SearchParams {
-  params: { [key: string]: any };
-  values: { [key: string]: any };
+  params?: { [key: string]: any };
+  values?: { [key: string]: any };
 }

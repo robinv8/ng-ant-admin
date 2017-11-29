@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {NzMessageService, NzModalService} from 'ng-zorro-antd';
-import {UserService} from './user.service';
-import {UserformComponent} from './userform/userform.component';
-import {SearchParams} from '@core/interfaces/table.interface';
-import {GridComponent} from '@core/grid.component';
+import { Component, OnInit } from '@angular/core';
+import { NzMessageService, NzModalService } from 'ng-zorro-antd';
+import { UserService } from './user.service';
+import { UserformComponent } from './userform/userform.component';
+import { SearchParams } from '@core/interfaces/table.interface';
+import { GridComponent } from '@core/grid.component';
 
 @Component({
   selector: 'app-user',
@@ -64,7 +64,7 @@ export class UserComponent extends GridComponent implements OnInit {
     this.setLoading(true);
     this.userService.getUserList(event || this.current, this.pageSize)
       .then((result: any) => {
-        const {data, total} = result;
+        const { data, total } = result;
         this.setTableData(data);
         this.setTotal(total);
         this.setLoading(false);
@@ -120,14 +120,14 @@ export class UserComponent extends GridComponent implements OnInit {
   }
 
   _startValueChange = () => {
-    const {startDate, endDate} = this.searchParmas.values;
+    const { startDate, endDate } = this.searchParmas.values;
     if (startDate > endDate) {
       this.searchParmas.values.endDate = null;
     }
   }
 
   _endValueChange = () => {
-    const {startDate, endDate} = this.searchParmas.values;
+    const { startDate, endDate } = this.searchParmas.values;
     if (startDate > endDate) {
       this.searchParmas.values.startDate = null;
     }

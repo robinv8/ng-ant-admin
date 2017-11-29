@@ -1,4 +1,5 @@
 import {NHttpClinet} from '@core/utils/http.client';
+import {ResponseModel} from '@core/utils/ResponseModel';
 
 /**
  * BaseService contains public crud
@@ -17,16 +18,15 @@ export class BaseService {
    * @returns {Promise<any>}
    */
   queryAll() {
-    const promise = new Promise((resolve, reject) => {
-      this.http.get(`${this.http.SERVER_URL}${this.module}/all`).subscribe((result: any) => {
-        if (result.code === 1) {
-          resolve(result);
+    return new Promise((resolve, reject) => {
+      this.http.get(`${this.http.SERVER_URL}${this.module}/all`).subscribe((response: ResponseModel) => {
+        if (response.result === '00000000') {
+          resolve(response.data);
         } else {
-          reject(result);
+          //reject(result);
         }
       });
     });
-    return promise;
   }
 
   /**
@@ -35,16 +35,15 @@ export class BaseService {
    * @returns {Promise<any>}
    */
   queryById(id: string) {
-    const promise = new Promise((resolve, reject) => {
-      this.http.get(`${this.http.SERVER_URL}${this.module}/${id}`).subscribe((result: any) => {
-        if (result.code === 1) {
-          resolve(result);
+    return new Promise((resolve, reject) => {
+      this.http.get(`${this.http.SERVER_URL}${this.module}/${id}`).subscribe((response: ResponseModel) => {
+        if (response.result === '00000000') {
+          resolve(response.data);
         } else {
-          reject(result);
+          //reject(result);
         }
       });
     });
-    return promise;
   }
 
   /**
@@ -53,16 +52,15 @@ export class BaseService {
    * @returns {Promise<any>}
    */
   create(params: Object) {
-    const promise = new Promise((resolve, reject) => {
-      this.http.post(`${this.http.SERVER_URL}${this.module}`, params).subscribe((result: any) => {
-        if (result.code === 1) {
-          resolve(result);
+    return new Promise((resolve, reject) => {
+      this.http.post(`${this.http.SERVER_URL}${this.module}`, params).subscribe((response: ResponseModel) => {
+        if (response.result === '00000000') {
+          resolve(response.data);
         } else {
-          reject(result);
+          //reject(result);
         }
       });
     });
-    return promise;
   }
 
   /**
@@ -72,16 +70,15 @@ export class BaseService {
    * @returns {Promise<any>}
    */
   update(id: string, params: any) {
-    const promise = new Promise((resolve, reject) => {
-      this.http.put(`${this.http.SERVER_URL}${this.module}/${id}`, params).subscribe((result: any) => {
-        if (result.code === 1) {
-          resolve(result);
+    return new Promise((resolve, reject) => {
+      this.http.put(`${this.http.SERVER_URL}${this.module}/${id}`, params).subscribe((response: ResponseModel) => {
+        if (response.result === '00000000') {
+          resolve(response.data);
         } else {
-          reject(result);
+          //reject(result);
         }
       });
     });
-    return promise;
   }
 
   /**
@@ -90,17 +87,16 @@ export class BaseService {
    * @param {number} pageSize
    * @returns {Promise<any>}
    */
-  queryList(pageIndex: number, pageSize: number) {
-    const promise = new Promise((resolve, reject) => {
-      this.http.get(`${this.http.SERVER_URL}${this.module}?pageIndex=${pageIndex}&pageSize=${pageSize}`).subscribe((result: any) => {
-        if (result.code === 1) {
-          resolve(result);
+  queryList(pageIndex: number, pageSize: number, searchParmas?: {}) {
+    return new Promise((resolve, reject) => {
+      this.http.get(`${this.http.SERVER_URL}${this.module}?pageNum=${pageIndex}&pageSize=${pageSize}`, searchParmas).subscribe((response: ResponseModel) => {
+        if (response.result === '00000000') {
+          resolve(response.data);
         } else {
-          reject(result);
+          //reject(result);
         }
       });
     });
-    return promise;
   }
 
   /**
@@ -109,15 +105,14 @@ export class BaseService {
    * @returns {Promise<any>}
    */
   remove(id: string) {
-    const promise = new Promise((resolve, reject) => {
-      this.http.delete(`${this.http.SERVER_URL}${this.module}/` + id).subscribe((result: any) => {
-        if (result.code === 1) {
-          resolve(result);
+    return new Promise((resolve, reject) => {
+      this.http.delete(`${this.http.SERVER_URL}${this.module}/` + id).subscribe((response: ResponseModel) => {
+        if (response.result === '00000000') {
+          resolve(response.data);
         } else {
-          reject(result);
+          //reject(result);
         }
       });
     });
-    return promise;
   }
 }

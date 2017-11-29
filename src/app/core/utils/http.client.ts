@@ -1,4 +1,4 @@
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/do';
@@ -6,6 +6,7 @@ import 'rxjs/add/operator/catch';
 import * as moment from 'moment';
 import {environment} from '../../../environments/environment';
 import {NzMessageService} from 'ng-zorro-antd';
+import {SessionStorageService} from '@core/storage/storage.service';
 
 /**
  * 封装HttpClient，主要解决：
@@ -15,7 +16,7 @@ import {NzMessageService} from 'ng-zorro-antd';
  */
 @Injectable()
 export class NHttpClinet {
-  constructor(private http: HttpClient, private message: NzMessageService) {
+  constructor(private http: HttpClient, private message: NzMessageService, private session: SessionStorageService) {
   }
 
   private _loading = false;
@@ -24,6 +25,11 @@ export class NHttpClinet {
     return this._loading;
   }
 
+  /**
+   * 处理参数
+   * @param params
+   * @returns {HttpParams}
+   */
   parseParams(params: any): HttpParams {
     let ret = new HttpParams();
     if (params) {
@@ -32,12 +38,27 @@ export class NHttpClinet {
         let _data = params[key];
         // 将时间转化为：时间戳 (秒)
         if (moment.isDate(_data)) {
-          _data = moment(_data).unix();
+          _data = moment(_data).valueOf();
         }
-        ret = ret.set(key, _data);
+        if (_data) {
+          ret = ret.set(key, _data);
+        }
       }
     }
     return ret;
+  }
+
+  /**
+   * 处理请求头
+   * @returns {HttpHeaders}
+   */
+  parseHeaders(): HttpHeaders {
+    const token = this.session.get('token');
+    let res = new HttpHeaders();
+    if (token) {
+      res = res.set('token', token);
+    }
+    return res;
   }
 
   private begin() {
@@ -59,10 +80,11 @@ export class NHttpClinet {
    * @param {string} url URL地址
    * @param {*} [params] 请求参数
    */
-  get(url: string, params?: any): Observable<any> {
+  get<T>(url: string, params?: any): Observable<T> {
     this.begin();
     return this.http
       .get(url, {
+        headers: this.parseHeaders(),
         params: this.parseParams(params)
       })
       .do(() => this.end())
@@ -84,14 +106,13 @@ export class NHttpClinet {
     this.begin();
     return this.http
       .post(url, body || null, {
+        headers: this.parseHeaders(),
         params: this.parseParams(params)
       })
       .do(() => this.end())
       .catch((res) => {
         this.end();
-        if (res.error.code === '404') {
-          this.message.error('请求失败，请重试');
-        }
+        this.message.error('联网失败，请稍后重试！');
         return res;
       });
   }
@@ -106,11 +127,13 @@ export class NHttpClinet {
     this.begin();
     return this.http
       .put(url, {
+        headers: this.parseHeaders(),
         params: this.parseParams(params)
       })
       .do(() => this.end())
       .catch((res) => {
         this.end();
+        this.message.error('联网失败，请稍后重试！');
         return res;
       });
   }
@@ -123,13 +146,14 @@ export class NHttpClinet {
    */
   delete(url: string, params?: any): Observable<any> {
     this.begin();
-    return this.http
-      .delete(url, {
-        params: this.parseParams(params)
-      })
+    return this.http.delete(url, {
+      headers: this.parseHeaders(),
+      params: this.parseParams(params)
+    })
       .do(() => this.end())
       .catch((res) => {
         this.end();
+        this.message.error('联网失败，请稍后重试！');
         return res;
       });
   }
