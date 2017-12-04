@@ -9,6 +9,7 @@ import {CanAuthProvide} from '@core/services/auth.service';
 import {ChartsComponent} from './charts/charts.component';
 
 export const routes: Routes = [
+  {path: 'login', component: LoginComponent, canLoad: [CanAuthProvide]},
   {
     path: '', component: HomeComponent, canActivate: [CanAuthProvide],
     children: [
@@ -24,11 +25,10 @@ export const routes: Routes = [
           breadcrumb: '用户'
         }
       },
-      {path: 'charts', component: ChartsComponent, canActivate: [CanAuthProvide]},
+      {path: 'charts', component: ChartsComponent, canActivate: [CanAuthProvide],},
       {path: '', redirectTo: 'dashboard', pathMatch: 'full'}
     ]
   },
-  {path: 'login', component: LoginComponent, canLoad: [CanAuthProvide]},
-  {path: '**', redirectTo: '/', pathMatch: 'full'},
+  {path: '**', redirectTo: '/', pathMatch: 'full'}
 ];
 
