@@ -1,6 +1,4 @@
-import {ModuleWithProviders} from '@angular/core';
-
-import {Routes, RouterModule} from '@angular/router';
+import {Routes} from '@angular/router';
 import {HomeComponent} from '../routes/home/home.component';
 import {LoginComponent} from '../routes/login/login.component';
 import {DashboardComponent} from '../routes/dashboard/dashboard.component';
@@ -9,6 +7,7 @@ import {CanAuthProvide} from '@core/services/auth.service';
 import {ChartsComponent} from './charts/charts.component';
 
 export const routes: Routes = [
+  {path: 'login', component: LoginComponent, canLoad: [CanAuthProvide]},
   {
     path: '', component: HomeComponent, canActivate: [CanAuthProvide],
     children: [
@@ -28,7 +27,6 @@ export const routes: Routes = [
       {path: '', redirectTo: 'dashboard', pathMatch: 'full'}
     ]
   },
-  {path: 'login', component: LoginComponent, canLoad: [CanAuthProvide]},
   {path: '**', redirectTo: '/', pathMatch: 'full'},
 ];
 
