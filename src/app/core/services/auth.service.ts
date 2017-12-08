@@ -6,11 +6,11 @@ import {SessionStorageService} from '../storage/storage.module';
 
 
 @Injectable()
-export class CanAuthProvide implements CanActivate, CanLoad {
+export class CanAuthProvide implements CanActivate {
   constructor(private router: Router, private _storage: SessionStorageService) {
   }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
     return this.check();
   }
 
@@ -18,18 +18,13 @@ export class CanAuthProvide implements CanActivate, CanLoad {
     return this.check();
   }
 
-  check(): Observable<boolean> {
-    return new Observable((observer) => {
-      const auth = this._storage.get('username');
-      if (auth) {
-        observer.next(true);
-        observer.complete();
-        return;
-      }
-      console.log('登录失败');
-      observer.next(false);
-      observer.complete();
-      this.router.navigate(['/login']);
-    });
+  check(): boolean {
+    const auth = this._storage.get('username');
+    if (auth) {
+      return true;
+    }
+    console.log('登录失败');
+    //this.router.navigate(['/login']);
+    return false;
   }
 }

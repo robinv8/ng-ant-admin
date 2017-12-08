@@ -1,4 +1,6 @@
-import {Routes} from '@angular/router';
+import {ModuleWithProviders} from '@angular/core';
+
+import {Routes, RouterModule} from '@angular/router';
 import {HomeComponent} from '../routes/home/home.component';
 import {LoginComponent} from '../routes/login/login.component';
 import {DashboardComponent} from '../routes/dashboard/dashboard.component';
@@ -23,10 +25,10 @@ export const routes: Routes = [
           breadcrumb: '用户'
         }
       },
-      {path: 'charts', component: ChartsComponent, canActivate: [CanAuthProvide]},
+      {path: 'charts', component: ChartsComponent, canActivate: [CanAuthProvide],},
       {path: '', redirectTo: 'dashboard', pathMatch: 'full'}
     ]
   },
-  {path: '**', redirectTo: '/', pathMatch: 'full'},
+  {path: '**', redirectTo: '/', pathMatch: 'full'}
 ];
 
