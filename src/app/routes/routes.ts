@@ -25,7 +25,7 @@ export const routes: Routes = [
           breadcrumb: '用户'
         }
       },
-      {path: 'charts', component: ChartsComponent, canActivate: [CanAuthProvide],},
+      {path: 'charts', component: ChartsComponent, canActivate: [CanAuthProvide]},
       {path: '', redirectTo: 'dashboard', pathMatch: 'full'}
     ]
   },

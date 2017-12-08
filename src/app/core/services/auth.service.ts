@@ -23,8 +23,7 @@ export class CanAuthProvide implements CanActivate {
     if (auth) {
       return true;
     }
-    console.log('登录失败');
-    //this.router.navigate(['/login']);
+    this.router.navigate(['/login']);
     return false;
   }
 }
