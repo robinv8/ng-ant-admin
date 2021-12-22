@@ -74,7 +74,7 @@ export class UserService extends BaseService {
    */
   getUserList(pageIndex, pageSize) {
     return new Promise((resolve, reject) => {
-      this.http.get('https://www.easy-mock.com/mock/5a011b579d3ceb4a354379db/user')
+      this.http.get('/assets/mockData/list.json')
         .subscribe(result => {
           resolve(result);
         });
