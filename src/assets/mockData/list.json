@@ -1,0 +1,41 @@
+{
+    "data":[
+        {
+            "id": "1",
+            "avatar": "/assets/logo.png",
+            "name": "zhangsan",
+            "nickName": "zs",
+            "phone": 13528234632,
+            "address": "--",
+            "isMale": "男",
+            "email": "--",
+            "createTime": "--",
+            "age": 18
+        },
+        {
+            "id": "2",
+            "avatar": "/assets/logo.png",
+            "name": "lisi",
+            "nickName": "zs",
+            "phone": 13528234632,
+            "address": "--",
+            "isMale": "女",
+            "email": "--",
+            "createTime": "--",
+            "age": 20
+        },
+        {
+            "id": "3",
+            "avatar": "/assets/logo.png",
+            "name": "wangwu",
+            "nickName": "zs",
+            "phone": 13528234632,
+            "address": "--",
+            "isMale": "男",
+            "email": "--",
+            "createTime": "--",
+            "age": 15
+        }
+    ]
+    
+}

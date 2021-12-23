@@ -28,4 +28,3 @@ npm start
 
 ![image](https://user-images.githubusercontent.com/12277531/33113418-3d37fc42-cf93-11e7-9837-c18fb9be76f8.png)
 
-

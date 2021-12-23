@@ -22,7 +22,7 @@ export class UserComponent extends GridComponent implements OnInit {
     },
     values: {
       search_1: '',
-      search_2: '',
+      search_2: null, // 默认展示placeholder
       startDate: '',
       endDate: ''
     }
@@ -116,6 +116,7 @@ export class UserComponent extends GridComponent implements OnInit {
   clearSearchParams() {
     for (const key in this.searchParmas.values) {
       this.searchParmas.values[key] = '';
+      this.searchParmas.values.search_2 = null;
     }
   }
 

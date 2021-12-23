@@ -1,0 +1,20 @@
+{
+    "data":[
+        {
+            "icon": "home",
+            "route": "/dashboard",
+            "name": "首页"
+        },
+        {
+            "icon": "solution",
+            "route": "/user",
+            "name": "用户"
+        },
+        {
+            "icon": "hdd",
+            "route": "/charts",
+            "name": "图表"
+        }
+    ]
+    
+}
